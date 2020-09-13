@@ -1,0 +1,100 @@
+.comp_topmenu {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  -webkit-app-region: drag;
+
+  .left-side {
+    -webkit-app-region: none;
+
+    .btn-menubar {
+      width: 45px;
+      height: 40px;
+      padding: 0;
+      border: none;
+      display: flex;
+      background: transparent;
+      justify-content: center;
+      align-items: center;
+
+      &.menu {
+        display: flex;
+        flex-direction: column;
+
+        span {
+          display: block;
+          width: 15px;
+          height: 1px;
+          margin: 1px 0;
+        }
+      }
+    }
+  }
+
+  .center-side {
+    margin: 0 auto;
+    -webkit-app-region: none;
+  }
+
+  .right-side {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .btn-preferences {
+      margin-right: 7px;
+    }
+
+    button {
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      padding: 0;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3px;
+      cursor: pointer;
+      -webkit-app-region: none;
+
+      svg {
+        width: 16px;
+      }
+    }
+
+    .command-buttons {
+      display: flex;
+      flex-direction: row;
+      -webkit-app-region: none;
+
+      .btn-menubar {
+        width: 45px;
+        height: 40px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0;
+
+        &.minimize,
+        &.maximize {
+          svg {
+            width: 12px;
+          }
+        }
+
+        &.close {
+          svg {
+            width: 20px;
+          }
+        }
+      }
+    }
+  }
+}

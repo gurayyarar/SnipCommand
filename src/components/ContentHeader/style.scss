@@ -1,0 +1,39 @@
+.comp_content-header {
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 12px;
+
+  * {
+    user-select: none;
+  }
+
+  .left-side {
+    .title-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 2px;
+
+      svg {
+        height: 17px;
+      }
+
+      .title {
+        font-weight: bold;
+        font-size: 13px;
+        margin-left: 5px;
+      }
+    }
+
+    .sub-text {
+      font-size: 11px;
+      margin-top: 2px;
+    }
+  }
+
+  .right-side {
+    margin-left: auto;
+  }
+}

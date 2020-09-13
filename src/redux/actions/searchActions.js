@@ -1,0 +1,3 @@
+const SET_SEARCH_QUERY = "SET_SEARCH_QUERY";
+
+export {SET_SEARCH_QUERY};

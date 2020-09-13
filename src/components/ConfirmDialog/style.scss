@@ -1,0 +1,49 @@
+.comp_confirm-dialog {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999 !important;
+
+  * {
+    user-select: none;
+  }
+
+  .confirm-dialog-content {
+    position: absolute;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 3px;
+
+    .confirm-dialog-header {
+      padding: 10px 12px;
+
+      .title {
+        font-weight: bold;
+        font-size: 14px;
+      }
+    }
+
+    .confirm-dialog-body {
+      padding: 15px;
+
+      .text {
+        font-size: 14px;
+      }
+    }
+
+    .confirm-dialog-footer {
+      display: flex;
+      padding: 15px;
+      justify-content: flex-end;
+
+      .btn {
+        margin-left: 10px;
+      }
+    }
+  }
+}

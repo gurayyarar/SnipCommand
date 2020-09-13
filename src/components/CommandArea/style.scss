@@ -1,0 +1,9 @@
+.comp_command-area {
+  .body-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 118px);
+  }
+}

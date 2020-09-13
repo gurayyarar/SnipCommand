@@ -1,0 +1,29 @@
+.comp_footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 23px;
+  font-size: 11px;
+  padding: 0 7px;
+
+  * {
+    user-select: none;
+  }
+
+  .left-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+  }
+
+  .app-name {
+    font-weight: bold;
+  }
+
+  .right-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

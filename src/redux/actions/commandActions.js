@@ -1,0 +1,3 @@
+const SET_COMMAND_LIST = "SET_COMMAND_LIST";
+
+export {SET_COMMAND_LIST};

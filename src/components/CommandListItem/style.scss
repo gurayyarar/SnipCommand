@@ -1,0 +1,118 @@
+.comp_command-list-item {
+  position: relative;
+
+  &:hover {
+    .command-list-menu {
+      display: flex;
+    }
+  }
+
+  .sub-container {
+    padding: 12px 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+
+    .left-side {
+      margin-right: auto;
+    }
+
+    .right-side {
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    * {
+      user-select: none;
+    }
+
+    .title {
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .code {
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .tags-list {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+
+      li {
+        margin: 10px 5px 0 0;
+        font-size: 11px;
+        border-radius: 50px;
+        padding: 4px 10px;
+      }
+    }
+  }
+
+  .command-list-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-direction: row-reverse;
+    position: absolute;
+    top: 9px;
+    right: 12px;
+    display: none;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+
+      &.favourite-true {
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      &.favourite-false {
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      &.edit {
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      &.restore {
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      &.copy {
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      &.trash {
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.comp_snippet-crud-modal {
+  .modal-body {
+    padding-bottom: 0 !important;
+    max-height: 450px;
+  }
+
+  .modal-footer {
+    .button-container {
+      display: flex;
+      padding: 15px;
+      justify-content: flex-end;
+
+      .btn-save-container {
+        margin-left: 10px;
+      }
+    }
+  }
+}

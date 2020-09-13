@@ -1,0 +1,100 @@
+.comp_snippet-generator-modal {
+  .modal-body {
+    max-height: 450px;
+    padding: 15px 12px 0 12px !important;
+
+    * {
+      user-select: none;
+    }
+
+    .title {
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .h-separator {
+      &:last-child {
+        border-bottom: none !important;
+        margin-bottom: 5px;
+      }
+    }
+
+    .command-container,
+    .tags-container,
+    .command-params-container,
+    .description-container {
+      margin-bottom: 15px;
+      border-radius: 3px;
+      overflow: hidden;
+      padding: 0 12px 12px 12px;
+    }
+
+    .tags-container {
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+
+        li {
+          margin: 5px 5px 0 0;
+          font-size: 11px;
+          border-radius: 50px;
+          padding: 4px 10px;
+        }
+      }
+    }
+
+    .command-container {
+      .code {
+        font-size: 13px;
+        border-radius: 3px;
+      }
+    }
+
+    .command-params-container {
+      .last-fe-container {
+        &:last-child {
+          margin-bottom: -10px;
+        }
+      }
+
+      .title {
+        + div {
+          font-size: 13px;
+          font-weight: bold;
+          border-radius: 3px;
+
+          .form-label {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .description-container {
+      .description-text {
+        font-size: 13px;
+        border-radius: 3px;
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+
+    .button-container {
+      display: flex;
+      padding: 15px;
+      justify-content: flex-end;
+
+      .btn-save-container {
+        margin-left: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@import "../themes/theme";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+
+  * {
+    font-family: "Montserrat", sans-serif;
+    outline: none !important;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+  }
+}
+
+#root {
+  height: 100vh;
+
+  .content-main-container {
+    display: flex;
+    height: calc(100vh - 65px);
+
+    .content-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+#noty_layout__bottomRight {
+  bottom: 40px !important;
+}
+
+.noty_theme__sunset {
+  .noty_body {
+    font-size: 13px !important;
+  }
+}
