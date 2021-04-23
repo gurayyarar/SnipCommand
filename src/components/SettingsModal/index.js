@@ -18,14 +18,17 @@ class SettingsModal extends React.Component {
         dbDirectory: '',
         backupDirectory: '',
         backupFiles: [],
-        appTheme: 'light'
+        appTheme: 'light',
+        onClickAction: 'open'
     }
 
     componentDidMount() {
         const dbDirectory = StorageHelpers.preference.get('storagePath');
         const backupDirectory = StorageHelpers.preference.get('backupPath');
         const appTheme = StorageHelpers.preference.get('appTheme') || 'light';
-        this.setState({dbDirectory, backupDirectory, appTheme});
+        const onClickAction = StorageHelpers.preference.get('onClickAction') || 'open';
+        this.setState({dbDirectory, backupDirectory, appTheme, onClickAction});
+
         this.listBackupFiles();
     }
 
@@ -113,8 +116,13 @@ class SettingsModal extends React.Component {
         this.setState({appTheme});
     }
 
+    changeOnClickAction = onClickAction => {
+        StorageHelpers.preference.set('onClickAction', onClickAction);
+        this.setState({onClickAction});
+    }
+
     render() {
-        const {dbDirectory, backupDirectory, backupFiles, appTheme} = this.state;
+        const {dbDirectory, backupDirectory, backupFiles, appTheme, onClickAction} = this.state;
         const {show, onClose, selectedTab} = this.props;
 
         return (
@@ -137,6 +145,12 @@ class SettingsModal extends React.Component {
                                 onClick={() => this.onClickTabHeader('themes')}
                             >
                                 <span>Themes</span>
+                            </li>
+                            <li
+                                className={selectedTab === 'settings' ? 'active' : ''}
+                                onClick={() => this.onClickTabHeader('settings')}
+                            >
+                                <span>Settings</span>
                             </li>
                             <li
                                 className={selectedTab === 'update' ? 'active' : ''}
@@ -256,6 +270,25 @@ class SettingsModal extends React.Component {
                                     </li>
                                 </ul>
                             </div>
+                        </div>
+                        <div className={`content${selectedTab === 'settings' ? ' active' : ''}`}>
+                            <div className="settings-section">
+                            <div className="info">On click action:</div>
+                            <Button
+                                text="Open"
+                                styleType={onClickAction === 'open' ? 'success' : 'default'}
+                                onClick={() => this.changeOnClickAction("open")}
+                                />
+                            <Button
+                                text="Copy"
+                                styleType={onClickAction === 'copy' ? 'success' : 'default'}
+                                onClick={() => this.changeOnClickAction("copy")}
+                                />
+                            </div>
+                            {onClickAction === 'copy'
+                                ? <div className="info">Only commands without dynamic parameters will be copied directly.</div>
+                                : null
+                            }
                         </div>
                         <div className={`content${selectedTab === 'update' ? ' active' : ''}`}>
                             <div className="update-section">
