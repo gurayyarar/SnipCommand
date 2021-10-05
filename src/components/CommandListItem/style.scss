@@ -1,5 +1,6 @@
 .comp_command-list-item {
   position: relative;
+  max-width: calc(100vw - 250px);
 
   &:hover {
     .command-list-menu {
