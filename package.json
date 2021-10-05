@@ -76,21 +76,21 @@
     "productivity"
   ],
   "bugs": {
-    "url": "https://github.com/gurayyarar/SnipCommand/issues"
+    "url": "https://github.com/rotten77/SnipCommand/issues"
   },
   "author": {
-    "name": "Güray Yarar (gurayyarar)",
-    "url": "https://github.com/gurayyarar",
-    "email": "guray.yarar@gmail.com"
+    "name": "Güray Yarar (gurayyarar) & Jan Zatloukal (rotten77)",
+    "url": "https://github.com/rotten77",
+    "email": "zatloukal.jan@gmail.com"
   },
   "links": {
-    "project-page": "https://github.com/gurayyarar/SnipCommand",
-    "author-page": "https://github.com/gurayyarar",
-    "license": "https://github.com/gurayyarar/SnipCommand/blob/master/LICENSE",
-    "changelogs": "https://github.com/gurayyarar/SnipCommand/blob/master/documentation/CHANGELOGS.md",
-    "documentation": "https://github.com/gurayyarar/SnipCommand/blob/master/documentation/DOCUMENTATION.md",
-    "issues": "https://github.com/gurayyarar/SnipCommand/issues",
-    "releases": "https://github.com/gurayyarar/SnipCommand/releases"
+    "project-page": "https://github.com/rotten77/SnipCommand",
+    "author-page": "https://github.com/rotten77",
+    "license": "https://github.com/rotten77/SnipCommand/blob/master/LICENSE",
+    "changelogs": "https://github.com/rotten77/SnipCommand/blob/master/documentation/CHANGELOGS.md",
+    "documentation": "https://github.com/rotten77/SnipCommand/blob/master/documentation/DOCUMENTATION.md",
+    "issues": "https://github.com/rotten77/SnipCommand/issues",
+    "releases": "https://github.com/rotten77/SnipCommand/releases"
   },
   "build": {
     "productName": "SnipCommand",
