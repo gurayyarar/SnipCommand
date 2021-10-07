@@ -247,8 +247,19 @@
     }
 
     .settings-section {
+      &:not(:first-child) {
+        margin-top:8px;
+        padding-top:8px;
+        border-top-style: solid;
+        border-top-width: 1px;
+      }
       button {
         margin-right: 8px;
+      }
+      .settings-section-title {
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 4px;
       }
     }
   }

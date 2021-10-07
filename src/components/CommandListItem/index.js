@@ -26,6 +26,7 @@ class CommandListItem extends Component {
         const {item} = this.props;
         const {formValues} = this.state;
         let onClickAction = StorageHelpers.preference.get('onClickAction');
+        let autoClose = StorageHelpers.preference.get('autoClose');
 
         if(item.command.match(new RegExp(`\\[s\\s*(.*?)\\s*\\/]`, 'g'))) {
             onClickAction = 'open';
@@ -35,6 +36,11 @@ class CommandListItem extends Component {
             const willCopyVal = CommandHelpers.replacedCommand(item.command, formValues);
             clipboard.writeText(willCopyVal);
             NotyHelpers.open('The command copied your clipboard!', 'info', 3000);
+    
+            if(autoClose === true) {
+                const { remote } = require('electron')
+                remote.BrowserWindow.getFocusedWindow().minimize();
+            }
         } else {
             this.setState({showGeneratorModal: true});
         }

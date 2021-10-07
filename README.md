@@ -2,15 +2,16 @@
 
 A free and open source command snippets manager for organize and copy fast.
 
-Forked from [gurayyarar/SnipCommand](https://github.com/gurayyarar/SnipCommand).
+Forked from [gurayyarar/SnipCommand](https://github.com/gurayyarar/SnipCommand) and added some new features.
 
 
 ## Releases
 
-Visit the [this link](https://github.com/rotten77/SnipCommand/releases)
+* [rotten77 / SnipCommand 0.1.3](https://github.com/rotten77/SnipCommand/releases/tag/v0.1.3)
+  * New: Autoclose (File > Preferences > Settings)
 
 * [rotten77 / SnipCommand 0.1.2](https://github.com/rotten77/SnipCommand/releases/tag/v0.1.2)
-  * New: Autocopy settings (File > Preferences >Settings)
+  * New: Autocopy settings (File > Preferences > Settings)
   * Fix: Long string breaks design
 
 

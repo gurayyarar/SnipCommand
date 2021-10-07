@@ -7,7 +7,7 @@ import {clipboard} from 'electron';
 
 import Modal from '../Modal';
 import {TextField, Button} from "../FormElements";
-import {CommandHelpers, NotyHelpers} from "../../core/Helpers";
+import {CommandHelpers, NotyHelpers, StorageHelpers} from "../../core/Helpers";
 import ChoiceField from "../FormElements/ChoiceField";
 import PasswordGeneratorField from "../FormElements/PasswordGeneratorField";
 
@@ -59,11 +59,17 @@ class SnippetGeneratorModal extends React.Component {
     copyCommand = () => {
         const {item} = this.props;
         const {formValues} = this.state;
+        let autoClose = StorageHelpers.preference.get('autoClose');
         const willCopyVal = CommandHelpers.replacedCommand(item?.command, formValues);
 
         clipboard.writeText(willCopyVal);
         NotyHelpers.open('The command copied your clipboard!', 'info', 3000);
         this.onClose();
+
+        if(autoClose === true) {
+            const { remote } = require('electron')
+            remote.BrowserWindow.getFocusedWindow().minimize();
+        }
     }
 
     _footer = () => {

@@ -19,7 +19,8 @@ class SettingsModal extends React.Component {
         backupDirectory: '',
         backupFiles: [],
         appTheme: 'light',
-        onClickAction: 'open'
+        onClickAction: 'open',
+        autoClose: false
     }
 
     componentDidMount() {
@@ -27,7 +28,8 @@ class SettingsModal extends React.Component {
         const backupDirectory = StorageHelpers.preference.get('backupPath');
         const appTheme = StorageHelpers.preference.get('appTheme') || 'light';
         const onClickAction = StorageHelpers.preference.get('onClickAction') || 'open';
-        this.setState({dbDirectory, backupDirectory, appTheme, onClickAction});
+        const autoClose = StorageHelpers.preference.get('autoClose') || false;
+        this.setState({dbDirectory, backupDirectory, appTheme, onClickAction, autoClose});
 
         this.listBackupFiles();
     }
@@ -121,8 +123,13 @@ class SettingsModal extends React.Component {
         this.setState({onClickAction});
     }
 
+    changeAutoClose = autoClose => {
+        StorageHelpers.preference.set('autoClose', autoClose);
+        this.setState({autoClose});
+    }
+
     render() {
-        const {dbDirectory, backupDirectory, backupFiles, appTheme, onClickAction} = this.state;
+        const {dbDirectory, backupDirectory, backupFiles, appTheme, onClickAction, autoClose} = this.state;
         const {show, onClose, selectedTab} = this.props;
 
         return (
@@ -273,7 +280,7 @@ class SettingsModal extends React.Component {
                         </div>
                         <div className={`content${selectedTab === 'settings' ? ' active' : ''}`}>
                             <div className="settings-section">
-                            <div className="info">On click action:</div>
+                            <div className="settings-section-title">On click action:</div>
                             <Button
                                 text="Open"
                                 styleType={onClickAction === 'open' ? 'success' : 'default'}
@@ -289,6 +296,25 @@ class SettingsModal extends React.Component {
                                 ? <div className="info">Only commands without dynamic parameters will be copied directly.</div>
                                 : null
                             }
+                            
+                            <div className="settings-section">
+
+                            <div className="settings-section-title">Auto close:</div>
+                            <Button
+                                text="Yes"
+                                styleType={autoClose === true ? 'success' : 'default'}
+                                onClick={() => this.changeAutoClose(true)}
+                                disabled="disabled"
+                                />
+                            <Button
+                                text="No"
+                                styleType={autoClose !== true ? 'success' : 'default'}
+                                onClick={() => this.changeAutoClose(false)}
+                                disabled="disabled"
+                                />
+                            <div className="info">Minimize window after snippet is copied.</div>
+                            </div>
+                            
                         </div>
                         <div className={`content${selectedTab === 'update' ? ' active' : ''}`}>
                             <div className="update-section">

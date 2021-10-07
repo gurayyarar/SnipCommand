@@ -1,5 +1,11 @@
 # CHANGELOGS
 
+### v0.1.3
+**October 7, 2021**
+
+- New: Autoclose (File > Preferences >Settings)
+
+
 ### v0.1.2
 **October 5, 2021**
 
