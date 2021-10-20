@@ -130,6 +130,8 @@ class CommandListItem extends Component {
         const {item, selectedMenu} = this.props;
         const {showCrudModal, showGeneratorModal} = this.state;
         const commandHtml = CommandHelpers.commandAsHtml(item?.command);
+        let lineClamp = StorageHelpers.preference.get('lineClamp');
+        let showCommandInList = StorageHelpers.preference.get('showCommandInList');
         const tags = this.getTags();
 
         return (
@@ -149,7 +151,7 @@ class CommandListItem extends Component {
                 <div onClick={this.onClickAction} className="sub-container">
                     <div className="left-side">
                         <div className="title">{item?.title}</div>
-                        <div className="code" dangerouslySetInnerHTML={{__html: commandHtml}}/>
+                        <div className={"code" + (lineClamp === true ? ' clamp' : '') + (showCommandInList === true ? '' : ' hidden')} dangerouslySetInnerHTML={{__html: commandHtml}}/>
 
                         <ul className="tags-list">
                             {

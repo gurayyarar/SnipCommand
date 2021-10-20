@@ -38,6 +38,15 @@
     .code {
       font-weight: bold;
       font-size: 13px;
+      &.clamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      &.hidden {
+        display:none !important;
+      }
     }
 
     .tags-list {

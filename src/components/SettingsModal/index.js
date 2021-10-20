@@ -20,7 +20,9 @@ class SettingsModal extends React.Component {
         backupFiles: [],
         appTheme: 'light',
         onClickAction: 'open',
-        autoClose: false
+        autoClose: false,
+        lineClamp: false,
+        showCommandInList: false,
     }
 
     componentDidMount() {
@@ -29,7 +31,9 @@ class SettingsModal extends React.Component {
         const appTheme = StorageHelpers.preference.get('appTheme') || 'light';
         const onClickAction = StorageHelpers.preference.get('onClickAction') || 'open';
         const autoClose = StorageHelpers.preference.get('autoClose') || false;
-        this.setState({dbDirectory, backupDirectory, appTheme, onClickAction, autoClose});
+        const lineClamp = StorageHelpers.preference.get('lineClamp') || false;
+        const showCommandInList = StorageHelpers.preference.get('showCommandInList') || false;
+        this.setState({dbDirectory, backupDirectory, appTheme, onClickAction, autoClose, lineClamp, showCommandInList});
 
         this.listBackupFiles();
     }
@@ -128,8 +132,22 @@ class SettingsModal extends React.Component {
         this.setState({autoClose});
     }
 
+    changeLineClamp = lineClamp => {
+        const {setCommandList} = this.props;
+        StorageHelpers.preference.set('lineClamp', lineClamp);
+        this.setState({lineClamp});
+        setCommandList();
+    }
+
+    changeShowCommandInList = showCommandInList => {
+        const {setCommandList} = this.props;
+        StorageHelpers.preference.set('showCommandInList', showCommandInList);
+        this.setState({showCommandInList});
+        setCommandList();
+    }
+
     render() {
-        const {dbDirectory, backupDirectory, backupFiles, appTheme, onClickAction, autoClose} = this.state;
+        const {dbDirectory, backupDirectory, backupFiles, appTheme, onClickAction, autoClose, lineClamp, showCommandInList} = this.state;
         const {show, onClose, selectedTab} = this.props;
 
         return (
@@ -313,6 +331,38 @@ class SettingsModal extends React.Component {
                                 disabled="disabled"
                                 />
                             <div className="info">Minimize window after snippet is copied.</div>
+                            </div>
+
+                            <div className="settings-section">
+
+                            <div className="settings-section-title">Show command:</div>
+                            <Button
+                                text="Yes"
+                                styleType={showCommandInList === true ? 'success' : 'default'}
+                                onClick={() => this.changeShowCommandInList(true)}
+                                />
+                            <Button
+                                text="No"
+                                styleType={showCommandInList !== true ? 'success' : 'default'}
+                                onClick={() => this.changeShowCommandInList(false)}
+                                />
+                            <div className="info">Show command code block in the commands list.</div>
+                            </div>
+
+                            <div className="settings-section">
+
+                            <div className="settings-section-title">Line clamp:</div>
+                            <Button
+                                text="Yes"
+                                styleType={lineClamp === true ? 'success' : 'default'}
+                                onClick={() => this.changeLineClamp(true)}
+                                   />
+                            <Button
+                                text="No"
+                                styleType={lineClamp !== true ? 'success' : 'default'}
+                                onClick={() => this.changeLineClamp(false)}
+                                />
+                            <div className="info">Limit the contents of a code block displayed in the commands list.</div>
                             </div>
                             
                         </div>

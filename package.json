@@ -1,6 +1,6 @@
 {
   "name": "snipcommand",
-  "version": "0.1.3",
+  "version": "0.1.4dev001",
   "description": "A free and open source command snippets manager for organize and copy fast.",
   "private": true,
   "main": "public/electron.js",
