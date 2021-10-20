@@ -33,7 +33,8 @@ class SettingsModal extends React.Component {
         const autoClose = StorageHelpers.preference.get('autoClose') || false;
         const lineClamp = StorageHelpers.preference.get('lineClamp') || false;
         const showCommandInList = StorageHelpers.preference.get('showCommandInList') || false;
-        this.setState({dbDirectory, backupDirectory, appTheme, onClickAction, autoClose, lineClamp, showCommandInList});
+        const sortBy = StorageHelpers.preference.get('sortBy') || '';
+        this.setState({dbDirectory, backupDirectory, appTheme, onClickAction, autoClose, lineClamp, showCommandInList, sortBy});
 
         this.listBackupFiles();
     }
@@ -140,14 +141,17 @@ class SettingsModal extends React.Component {
     }
 
     changeShowCommandInList = showCommandInList => {
-        const {setCommandList} = this.props;
         StorageHelpers.preference.set('showCommandInList', showCommandInList);
         this.setState({showCommandInList});
-        setCommandList();
+    }
+
+    changeSortBy = sortBy => {
+        StorageHelpers.preference.set('sortBy', sortBy);
+        this.setState({sortBy});
     }
 
     render() {
-        const {dbDirectory, backupDirectory, backupFiles, appTheme, onClickAction, autoClose, lineClamp, showCommandInList} = this.state;
+        const {dbDirectory, backupDirectory, backupFiles, appTheme, onClickAction, autoClose, lineClamp, showCommandInList, sortBy} = this.state;
         const {show, onClose, selectedTab} = this.props;
 
         return (
@@ -364,7 +368,20 @@ class SettingsModal extends React.Component {
                                 />
                             <div className="info">Limit the contents of a code block displayed in the commands list.</div>
                             </div>
-                            
+
+                            <div className="settings-section">
+                            <div className="settings-section-title">Sort by:</div>
+                            <Button
+                                text="Created"
+                                styleType={sortBy === '' ? 'success' : 'default'}
+                                onClick={() => this.changeSortBy("")}
+                                />
+                            <Button
+                                text="Title"
+                                styleType={sortBy === 'title' ? 'success' : 'default'}
+                                onClick={() => this.changeSortBy("title")}
+                                />
+                            </div>
                         </div>
                         <div className={`content${selectedTab === 'update' ? ' active' : ''}`}>
                             <div className="update-section">
