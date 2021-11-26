@@ -37,7 +37,10 @@
 
     .code {
       font-weight: bold;
-      font-size: 13px;
+      font-size: 11px;
+      white-space: pre;
+      font-family: monospace;
+      opacity: 0.5;
       &.clamp {
         display: -webkit-box;
         -webkit-line-clamp: 3;
