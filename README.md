@@ -7,6 +7,9 @@ Forked from [gurayyarar/SnipCommand](https://github.com/gurayyarar/SnipCommand) 
 
 ## Releases
 
+* [rotten77 / SnipCommand 0.1.5](https://github.com/rotten77/SnipCommand/releases/tag/v0.1.5)
+  * Snippets code font family changed to monospace
+
 * [rotten77 / SnipCommand 0.1.4](https://github.com/rotten77/SnipCommand/releases/tag/v0.1.4)
   * New: Limit the contents of a code block displayed in the commands list (File > Preferences > Settings > Line clamp)
   * New: Show/hide command code block in the commands list (File > Preferences > Settings > Show command)

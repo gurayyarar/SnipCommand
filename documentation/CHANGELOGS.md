@@ -1,5 +1,10 @@
 # CHANGELOGS
 
+### v0.1.5
+**November 26, 2021**
+
+- Snippets code font family changed to monospace
+
 ### v0.1.4
 **October 20, 2021**
 
