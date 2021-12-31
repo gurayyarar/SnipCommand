@@ -7,6 +7,36 @@ import './style.scss';
 
 
 class SearchField extends Component {
+    componentDidMount() {
+        this.bindSearchFocusEvent();    
+    }
+
+    /**
+     * Auto search focus with '/' key
+     */
+    bindSearchFocusEvent = () => {
+        document.addEventListener('keyup', (e) => {
+            if (!e.repeat){
+                if (e.key === '/'){
+                    const modals = document.querySelectorAll('.comp_modal');
+
+                    let openModals = [];
+        
+                    if (modals && modals.length){
+                        openModals = [...modals].map((x) => x.classList.contains('visible')).filter((x) => x);
+                    }
+
+                    // disable auto serarch focus while any modal open
+                    if (openModals.length > 0){
+                        return;
+                    }
+
+                    this.searchInput.focus();
+                }
+            }
+        });
+    }
+
     render() {
         const {placeholder, value, onChangeText, onClearClick} = this.props;
 
@@ -16,7 +46,9 @@ class SearchField extends Component {
                     <div className="search-icon-container">
                         <SvgIcon name={"search"}/>
                     </div>
+
                     <input
+                        ref={(input) => { this.searchInput = input; }} 
                         type="text"
                         className="form-control"
                         value={value || ""}
@@ -25,6 +57,7 @@ class SearchField extends Component {
                             onChangeText && onChangeText(e.target.value)
                         }}
                     />
+
                     {
                         value !== "" && value !== null
                             ? (
