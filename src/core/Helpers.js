@@ -192,7 +192,7 @@ const StorageHelpers = {
     },
 
     autoBackup: () => {
-        const backupFiles = StorageHelpers.backupFiles();
+        const backupFiles = StorageHelpers.getBackupFiles();
 
         if (backupFiles.length === 0) {
             StorageHelpers.backupNow();
@@ -217,22 +217,32 @@ const StorageHelpers = {
         fs.copyFileSync(dbFilePath, path.join(dbBackupDir, App.dbName));
     },
 
-    backupFiles: () => {
-        const result = [];
-        const backupDir = storagePrefences.get('backupPath').toString();
-        const folders = fs.readdirSync(backupDir);
+    /**
+     * Get backup file list
+     * 
+     * @returns array
+     */
+    getBackupFiles: () => {
+        const result = [],
+            backupDir = storagePrefences.get('backupPath').toString(),
+            folders = fs.readdirSync(backupDir);
 
-        _.forEach(folders, (value) => {
+        folders.forEach((value) => {
             const momentVal = moment(value, 'YYYY-MM-DD_HH-mm-ss');
-            result.push({
-                name: momentVal.format('DD MMM YYYY, HH:mm:ss'),
-                filePath: path.join(backupDir, value, App.dbName),
-                date: momentVal.format('YYYY-MM-DD HH:mm:ss')
-            })
+
+            if (momentVal.isValid()){
+                result.push({
+                    name: momentVal.format('DD MMM YYYY, HH:mm:ss'),
+                    timeAgo: momentVal.fromNow(),
+                    filePath: path.join(backupDir, value, App.dbName),
+                    date: momentVal.format('YYYY-MM-DD HH:mm:ss')
+                });
+            } else {
+                console.warn(`Backup file date is invalid: '${value}'`);
+            }
         });
 
-        result.reverse();
-        return result;
+        return result.reverse();
     }
 }
 

@@ -70,8 +70,13 @@ class SettingsModal extends React.Component {
         }
     }
 
+    /**
+     * Restore specific backup file
+     * 
+     * @param file 
+     */
     restoreFromBackup = file => {
-        const {setCommandList} = this.props;
+        const { setCommandList } = this.props;
 
         openConfirmDialog({
             title: 'Confirmation',
@@ -96,7 +101,7 @@ class SettingsModal extends React.Component {
     }
 
     listBackupFiles = () => {
-        const backupFiles = StorageHelpers.backupFiles();
+        const backupFiles = StorageHelpers.getBackupFiles();
         this.setState({backupFiles});
     }
 
@@ -216,27 +221,47 @@ class SettingsModal extends React.Component {
                                 </div>
                             </div>
 
+                            {/* Storage Restore Section */}
                             <div className="storage-restore-container">
-                                <div className="sub-title">Storage Restore</div>
-                                <div className="info">You can restore from backups. Please be carefully when make this
-                                    operation, because it will be overwritten!
+                                <div className="sub-title">
+                                    Storage Restore
                                 </div>
 
+                                <div className="info">
+                                    You can restore from backups. Please be carefully when make this operation, because it will be overwritten!
+                                </div>
+
+                                {/* Backup List */}
                                 <ul>
+                                    <li>
+                                        <div className="name">
+                                            Backup Date
+                                        </div>
+                                    </li>
+
                                     {
                                         backupFiles.map((file, index) => {
                                             return (
                                                 <li key={`restore_item_${index}`}>
-                                                    <div className="name">{file?.name}</div>
-                                                    <span onClick={() => this.restoreFromBackup(file)}>Restore</span>
+                                                    <div className="name">
+                                                        {file?.name}
+                                                    </div>
+
+                                                    <div className='time-ago'>
+                                                        ({file?.timeAgo})
+                                                    </div>
+
+                                                    <span onClick={() => this.restoreFromBackup(file)}>
+                                                        Restore
+                                                    </span>
                                                 </li>
                                             )
                                         })
                                     }
                                 </ul>
                             </div>
-
                         </div>
+
                         <div className={`content${selectedTab === 'themes' ? ' active' : ''}`}>
                             <div className="theme-section">
                                 <ul>
