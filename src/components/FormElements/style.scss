@@ -306,6 +306,9 @@
 
       .body {
         height: 100%;
+        textarea {
+          font-family:monospace;
+        }
       }
     }
   }
@@ -385,6 +388,7 @@
         padding: 15px;
         width: calc(100% - 30px);
         height: calc(100% - 30px);
+        font-family:monospace;
       }
     }
   }

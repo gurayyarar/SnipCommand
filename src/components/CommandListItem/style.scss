@@ -1,5 +1,6 @@
 .comp_command-list-item {
   position: relative;
+  max-width: calc(100vw - 250px);
 
   &:hover {
     .command-list-menu {
@@ -36,7 +37,19 @@
 
     .code {
       font-weight: bold;
-      font-size: 13px;
+      font-size: 11px;
+      white-space: pre;
+      font-family: monospace;
+      opacity: 0.5;
+      &.clamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      &.hidden {
+        display:none !important;
+      }
     }
 
     .tags-list {

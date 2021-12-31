@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import {clipboard} from 'electron';
 
-import {CommandHelpers, NotyHelpers, ReduxHelpers} from "../../core/Helpers";
+import {CommandHelpers, NotyHelpers, ReduxHelpers, StorageHelpers} from "../../core/Helpers";
 import SvgIcon from "../SvgIcon";
 import SnippetCrudModal from "../SnippetCrudModal";
 import Api from "../../core/Api";
@@ -20,6 +21,29 @@ class CommandListItem extends Component {
         confirmDialogTitle: "",
         confirmDialogText: "",
         showConfirmDialog: false
+    }
+    onClickAction = () => {
+        const {item} = this.props;
+        const {formValues} = this.state;
+        let onClickAction = StorageHelpers.preference.get('onClickAction');
+        let autoClose = StorageHelpers.preference.get('autoClose');
+
+        if(item.command.match(new RegExp(`\\[s\\s*(.*?)\\s*\\/]`, 'g'))) {
+            onClickAction = 'open';
+        }
+
+        if(onClickAction === 'copy') {
+            const willCopyVal = CommandHelpers.replacedCommand(item.command, formValues);
+            clipboard.writeText(willCopyVal);
+            NotyHelpers.open('The command copied your clipboard!', 'info', 3000);
+    
+            if(autoClose === true) {
+                const { remote } = require('electron')
+                remote.BrowserWindow.getFocusedWindow().minimize();
+            }
+        } else {
+            this.setState({showGeneratorModal: true});
+        }
     }
 
     toggleFavourite = () => {
@@ -106,6 +130,8 @@ class CommandListItem extends Component {
         const {item, selectedMenu} = this.props;
         const {showCrudModal, showGeneratorModal} = this.state;
         const commandHtml = CommandHelpers.commandAsHtml(item?.command);
+        let lineClamp = StorageHelpers.preference.get('lineClamp');
+        let showCommandInList = StorageHelpers.preference.get('showCommandInList');
         const tags = this.getTags();
 
         return (
@@ -122,10 +148,10 @@ class CommandListItem extends Component {
                     onClose={() => this.setState({showGeneratorModal: false})}
                 />
 
-                <div onClick={() => this.setState({showGeneratorModal: true})} className="sub-container">
+                <div onClick={this.onClickAction} className="sub-container">
                     <div className="left-side">
                         <div className="title">{item?.title}</div>
-                        <div className="code" dangerouslySetInnerHTML={{__html: commandHtml}}/>
+                        <div className={"code" + (lineClamp === true ? ' clamp' : '') + (showCommandInList === true ? '' : ' hidden')} dangerouslySetInnerHTML={{__html: commandHtml}}/>
 
                         <ul className="tags-list">
                             {

@@ -18,14 +18,24 @@ class SettingsModal extends React.Component {
         dbDirectory: '',
         backupDirectory: '',
         backupFiles: [],
-        appTheme: 'light'
+        appTheme: 'light',
+        onClickAction: 'open',
+        autoClose: false,
+        lineClamp: false,
+        showCommandInList: false,
     }
 
     componentDidMount() {
         const dbDirectory = StorageHelpers.preference.get('storagePath');
         const backupDirectory = StorageHelpers.preference.get('backupPath');
         const appTheme = StorageHelpers.preference.get('appTheme') || 'light';
-        this.setState({dbDirectory, backupDirectory, appTheme});
+        const onClickAction = StorageHelpers.preference.get('onClickAction') || 'open';
+        const autoClose = StorageHelpers.preference.get('autoClose') || false;
+        const lineClamp = StorageHelpers.preference.get('lineClamp') || false;
+        const showCommandInList = StorageHelpers.preference.get('showCommandInList') || false;
+        const sortBy = StorageHelpers.preference.get('sortBy') || '';
+        this.setState({dbDirectory, backupDirectory, appTheme, onClickAction, autoClose, lineClamp, showCommandInList, sortBy});
+
         this.listBackupFiles();
     }
 
@@ -113,8 +123,35 @@ class SettingsModal extends React.Component {
         this.setState({appTheme});
     }
 
+    changeOnClickAction = onClickAction => {
+        StorageHelpers.preference.set('onClickAction', onClickAction);
+        this.setState({onClickAction});
+    }
+
+    changeAutoClose = autoClose => {
+        StorageHelpers.preference.set('autoClose', autoClose);
+        this.setState({autoClose});
+    }
+
+    changeLineClamp = lineClamp => {
+        const {setCommandList} = this.props;
+        StorageHelpers.preference.set('lineClamp', lineClamp);
+        this.setState({lineClamp});
+        setCommandList();
+    }
+
+    changeShowCommandInList = showCommandInList => {
+        StorageHelpers.preference.set('showCommandInList', showCommandInList);
+        this.setState({showCommandInList});
+    }
+
+    changeSortBy = sortBy => {
+        StorageHelpers.preference.set('sortBy', sortBy);
+        this.setState({sortBy});
+    }
+
     render() {
-        const {dbDirectory, backupDirectory, backupFiles, appTheme} = this.state;
+        const {dbDirectory, backupDirectory, backupFiles, appTheme, onClickAction, autoClose, lineClamp, showCommandInList, sortBy} = this.state;
         const {show, onClose, selectedTab} = this.props;
 
         return (
@@ -137,6 +174,12 @@ class SettingsModal extends React.Component {
                                 onClick={() => this.onClickTabHeader('themes')}
                             >
                                 <span>Themes</span>
+                            </li>
+                            <li
+                                className={selectedTab === 'settings' ? 'active' : ''}
+                                onClick={() => this.onClickTabHeader('settings')}
+                            >
+                                <span>Settings</span>
                             </li>
                             <li
                                 className={selectedTab === 'update' ? 'active' : ''}
@@ -255,6 +298,89 @@ class SettingsModal extends React.Component {
                                         <div className="text-container">Dark Theme</div>
                                     </li>
                                 </ul>
+                            </div>
+                        </div>
+                        <div className={`content${selectedTab === 'settings' ? ' active' : ''}`}>
+                            <div className="settings-section">
+                            <div className="settings-section-title">On click action:</div>
+                            <Button
+                                text="Open"
+                                styleType={onClickAction === 'open' ? 'success' : 'default'}
+                                onClick={() => this.changeOnClickAction("open")}
+                                />
+                            <Button
+                                text="Copy"
+                                styleType={onClickAction === 'copy' ? 'success' : 'default'}
+                                onClick={() => this.changeOnClickAction("copy")}
+                                />
+                            </div>
+                            {onClickAction === 'copy'
+                                ? <div className="info">Only commands without dynamic parameters will be copied directly.</div>
+                                : null
+                            }
+                            
+                            <div className="settings-section">
+
+                            <div className="settings-section-title">Auto close:</div>
+                            <Button
+                                text="Yes"
+                                styleType={autoClose === true ? 'success' : 'default'}
+                                onClick={() => this.changeAutoClose(true)}
+                                disabled="disabled"
+                                />
+                            <Button
+                                text="No"
+                                styleType={autoClose !== true ? 'success' : 'default'}
+                                onClick={() => this.changeAutoClose(false)}
+                                disabled="disabled"
+                                />
+                            <div className="info">Minimize window after snippet is copied.</div>
+                            </div>
+
+                            <div className="settings-section">
+
+                            <div className="settings-section-title">Show command:</div>
+                            <Button
+                                text="Yes"
+                                styleType={showCommandInList === true ? 'success' : 'default'}
+                                onClick={() => this.changeShowCommandInList(true)}
+                                />
+                            <Button
+                                text="No"
+                                styleType={showCommandInList !== true ? 'success' : 'default'}
+                                onClick={() => this.changeShowCommandInList(false)}
+                                />
+                            <div className="info">Show command code block in the commands list.</div>
+                            </div>
+
+                            <div className="settings-section">
+
+                            <div className="settings-section-title">Line clamp:</div>
+                            <Button
+                                text="Yes"
+                                styleType={lineClamp === true ? 'success' : 'default'}
+                                onClick={() => this.changeLineClamp(true)}
+                                   />
+                            <Button
+                                text="No"
+                                styleType={lineClamp !== true ? 'success' : 'default'}
+                                onClick={() => this.changeLineClamp(false)}
+                                />
+                            <div className="info">Limit the contents of a code block displayed in the commands list.</div>
+                            </div>
+
+                            <div className="settings-section">
+                            <div className="settings-section-title">Sort by:</div>
+                            <Button
+                                text="Created"
+                                styleType={sortBy === '' ? 'success' : 'default'}
+                                onClick={() => this.changeSortBy("")}
+                                />
+                            <Button
+                                text="Title"
+                                styleType={sortBy === 'title' ? 'success' : 'default'}
+                                onClick={() => this.changeSortBy("title")}
+                                />
                             </div>
                         </div>
                         <div className={`content${selectedTab === 'update' ? ' active' : ''}`}>
