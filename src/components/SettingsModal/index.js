@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import {remote, shell} from 'electron';
+import { connect } from "react-redux";
+import { remote, shell } from 'electron';
 
 import Modal from "../Modal";
-import {Button, TextField} from "../FormElements";
-import {NotyHelpers, ReduxHelpers, StorageHelpers, ThemeHelpers} from "../../core/Helpers";
-import {openConfirmDialog} from "../ConfirmDialog";
-import {MainMenus} from "../../core/Constants";
-import {version, description, author, links} from '../../../package.json';
+import { Button, TextField } from "../FormElements";
+import { NotyHelpers, ReduxHelpers, StorageHelpers, ThemeHelpers } from "../../core/Helpers";
+import { openConfirmDialog } from "../ConfirmDialog";
+import { MainMenus } from "../../core/Constants";
+import { version, description, author, links } from '../../../package.json';
 
 import './style.scss';
-
 
 class SettingsModal extends React.Component {
     state = {
@@ -39,13 +38,22 @@ class SettingsModal extends React.Component {
         });
     }
 
-    onClickTabHeader = selectedTab => {
-        const {tabChanged} = this.props;
-        tabChanged && tabChanged(selectedTab);
+    /**
+     * Load backup files list
+     */
+    listBackupFiles = () => {
+        this.setState({
+            backupFiles: StorageHelpers.getBackupFiles()
+        });
     }
 
-    openMoveStorage = type => {
-        const {setCommandList} = this.props;
+    /**
+     * Change backup folder
+     * 
+     * @param string type 
+     */
+    openMoveStorage = (type) => {
+        const { setCommandList } = this.props;
 
         const dir = remote.dialog.showOpenDialogSync({
             properties: ['openDirectory']
@@ -56,14 +64,22 @@ class SettingsModal extends React.Component {
                 StorageHelpers.moveDb(dir[0]);
             } else {
                 StorageHelpers.preference.set('storagePath', dir[0]);
+
                 NotyHelpers.open('The storage opened successfully!', 'success', 2500);
+
                 setCommandList();
             }
+
             this.setState({dbDirectory: dir[0]});
         }
     }
 
-    changeOrBackupNow = type => {
+    /**
+     * Change backups folder or backup now
+     * 
+     * @param string type 
+     */
+    changeOrBackupNow = (type) => {
         if (type === 'change') {
             const dir = remote.dialog.showOpenDialogSync({
                 properties: ['openDirectory']
@@ -71,11 +87,14 @@ class SettingsModal extends React.Component {
 
             if (dir !== undefined) {
                 StorageHelpers.preference.set('backupPath', dir[0]);
+
                 this.setState({backupDirectory: dir[0]});
             }
         } else {
             StorageHelpers.backupNow();
+
             this.listBackupFiles();
+
             NotyHelpers.open('The backup process has been finished successfully!', 'success', 2500);
         }
     }
@@ -85,7 +104,7 @@ class SettingsModal extends React.Component {
      * 
      * @param file 
      */
-    restoreFromBackup = file => {
+    restoreFromBackup = (file) => {
         const { setCommandList } = this.props;
 
         openConfirmDialog({
@@ -110,15 +129,6 @@ class SettingsModal extends React.Component {
         });
     }
 
-    listBackupFiles = () => {
-        const backupFiles = StorageHelpers.getBackupFiles();
-        this.setState({backupFiles});
-    }
-
-    openLinkInBrowser = async slug => {
-        await shell.openExternal(links[slug]);
-    }
-
     /**
      * Change current theme and apply
      * 
@@ -129,11 +139,31 @@ class SettingsModal extends React.Component {
 
         document.body.classList.remove('light-theme');
         document.body.classList.remove('dark-theme');
-        document.body.classList.add(`${applyTheme}-theme`);
+        document.body.classList.add(applyTheme + '-theme');
 
         StorageHelpers.preference.set('appTheme', selectedTheme);
 
         this.setState({appTheme: selectedTheme});
+    }
+
+    /**
+     * Open target URL in browser
+     * 
+     * @param string slug 
+     */
+    openLinkInBrowser = async (slug) => {
+        await shell.openExternal(links[slug]);
+    }
+    
+    /**
+     * Switch target tab
+     * 
+     * @param string selectedTab 
+     */
+    onClickTabHeader = (selectedTab) => {
+        const { tabChanged } = this.props;
+
+        tabChanged && tabChanged(selectedTab);
     }
 
     render() {
@@ -147,39 +177,39 @@ class SettingsModal extends React.Component {
                     onClose={onClose}
                     title={"PREFERENCES"}>
 
+                    {/* Tab Headers */}
                     <div className="tabs-header-container">
                         <ul>
-                            <li
-                                className={selectedTab === 'storage' ? 'active' : ''}
-                                onClick={() => this.onClickTabHeader('storage')}
-                            >
+                            <li className={selectedTab === 'storage' ? 'active' : ''}
+                                onClick={() => this.onClickTabHeader('storage')}>
                                 <span>Storage</span>
                             </li>
-                            <li
-                                className={selectedTab === 'themes' ? 'active' : ''}
-                                onClick={() => this.onClickTabHeader('themes')}
-                            >
+                            <li className={selectedTab === 'themes' ? 'active' : ''}
+                                onClick={() => this.onClickTabHeader('themes')}>
                                 <span>Themes</span>
                             </li>
-                            <li
-                                className={selectedTab === 'update' ? 'active' : ''}
-                                onClick={() => this.onClickTabHeader('update')}
-                            >
+                            <li className={selectedTab === 'update' ? 'active' : ''}
+                                onClick={() => this.onClickTabHeader('update')}>
                                 <span>Update</span>
                             </li>
-                            <li
-                                className={selectedTab === 'about' ? 'active' : ''}
-                                onClick={() => this.onClickTabHeader('about')}
-                            >
+                            <li className={selectedTab === 'about' ? 'active' : ''}
+                                onClick={() => this.onClickTabHeader('about')}>
                                 <span>About</span>
                             </li>
                         </ul>
                     </div>
+
                     <div className="tabs-content-container">
+                        {/* Storage Tab */}
                         <div className={`content${selectedTab === 'storage' ? ' active' : ''}`}>
+                            {/* Storage Directory */}
                             <div className="storage-directory-container">
-                                <div className="sub-title">Storage Directory</div>
-                                <div className="info">To use sync services like iCloud Drive, Google Drive of Dropbox,
+                                <div className="sub-title">
+                                    Storage Directory
+                                </div>
+
+                                <div className="info">
+                                    To use sync services like iCloud Drive, Google Drive of Dropbox, 
                                     simply move storage to the corresponding synced folders.
                                 </div>
 
@@ -191,6 +221,7 @@ class SettingsModal extends React.Component {
                                             value={dbDirectory}
                                         />
                                     </div>
+
                                     <div className="buttons-container">
                                         <Button
                                             text={"Open Directory..."}
@@ -209,8 +240,12 @@ class SettingsModal extends React.Component {
                                 </div>
                             </div>
 
+                            {/* Storage Backups */}
                             <div className="storage-directory-backups-container">
-                                <div className="sub-title">Storage Backups</div>
+                                <div className="sub-title">
+                                    Storage Backups
+                                </div>
+
                                 <div className="info">
                                     Backup will be created every 6 hours automatically when app is running.
                                 </div>
@@ -239,7 +274,7 @@ class SettingsModal extends React.Component {
                                 </div>
                             </div>
 
-                            {/* Storage Restore Section */}
+                            {/* Storage Restore */}
                             <div className="storage-restore-container">
                                 <div className="sub-title">
                                     Storage Restore
@@ -280,7 +315,7 @@ class SettingsModal extends React.Component {
                             </div>
                         </div>
 
-                        {/* Theme Options */}
+                        {/* Theme Tab */}
                         <div className={`content${selectedTab === 'themes' ? ' active' : ''}`}>
                             <div className="theme-section">
                                 <ul>
@@ -317,9 +352,13 @@ class SettingsModal extends React.Component {
                             </div>
                         </div>
 
+                        {/* Version Tab */}
                         <div className={`content${selectedTab === 'update' ? ' active' : ''}`}>
                             <div className="update-section">
-                                <div className="info">You are using version of <b>{version}</b></div>
+                                <div className="info">
+                                    You are using version of <b>{version}</b>
+                                </div>
+
                                 <Button
                                     text="Check For Updates..."
                                     styleType="default"
@@ -327,11 +366,18 @@ class SettingsModal extends React.Component {
                                 />
                             </div>
                         </div>
+
+                        {/* About Tab */}
                         <div className={`content${selectedTab === 'about' ? ' active' : ''}`}>
                             <div className="about-section">
                                 <img src={'./images/logo/snip_command.png'} width={100} alt="SnipCommand"/>
-                                <div className="product-name">SnipCommand <small>{version}</small></div>
+                                
+                                <div className="product-name">
+                                    SnipCommand <small>{version}</small>
+                                </div>
+
                                 <div className="description">{description}</div>
+
                                 <div className="created-by">
                                     <div className="text">Created by</div>
                                     <div className="author" onClick={() => this.openLinkInBrowser('author-page')}>
@@ -343,15 +389,19 @@ class SettingsModal extends React.Component {
                                     <div className="link" onClick={() => this.openLinkInBrowser('project-page')}>
                                         GitHub Page
                                     </div>
+
                                     <div className="link" onClick={() => this.openLinkInBrowser('license')}>
                                         License
                                     </div>
+
                                     <div className="link" onClick={() => this.openLinkInBrowser('changelogs')}>
                                         Changelogs
                                     </div>
+
                                     <div className="link" onClick={() => this.openLinkInBrowser('documentation')}>
                                         Documentation
                                     </div>
+
                                     <div className="link" onClick={() => this.openLinkInBrowser('issues')}>
                                         Report An Issue
                                     </div>
