@@ -5,7 +5,7 @@ import TopMenu from './components/TopMenu';
 import Sidebar from './components/Sidebar';
 import store from "./redux/store";
 import CommandArea from "./components/CommandArea";
-import {StorageHelpers} from "./core/Helpers";
+import { StorageHelpers, ThemeHelpers } from "./core/Helpers";
 import Footer from "./components/Footer";
 
 import './components/common.scss';
@@ -21,7 +21,8 @@ class App extends Component {
     }
 
     setTheme = () => {
-        const theme = `${StorageHelpers.preference.get('appTheme') || 'light'}-theme`;
+        const theme = `${ThemeHelpers.getCurrentAppTheme()}-theme`;
+        
         if (!document.body.classList.contains(theme)) document.body.classList.add(theme);
     }
 

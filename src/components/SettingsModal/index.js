@@ -5,7 +5,7 @@ import {remote, shell} from 'electron';
 
 import Modal from "../Modal";
 import {Button, TextField} from "../FormElements";
-import {NotyHelpers, ReduxHelpers, StorageHelpers} from "../../core/Helpers";
+import {NotyHelpers, ReduxHelpers, StorageHelpers, ThemeHelpers} from "../../core/Helpers";
 import {openConfirmDialog} from "../ConfirmDialog";
 import {MainMenus} from "../../core/Constants";
 import {version, description, author, links} from '../../../package.json';
@@ -18,15 +18,25 @@ class SettingsModal extends React.Component {
         dbDirectory: '',
         backupDirectory: '',
         backupFiles: [],
-        appTheme: 'light'
+        appTheme: 'light',
+        systemTheme: ThemeHelpers.getSystemTheme()
     }
 
     componentDidMount() {
-        const dbDirectory = StorageHelpers.preference.get('storagePath');
-        const backupDirectory = StorageHelpers.preference.get('backupPath');
-        const appTheme = StorageHelpers.preference.get('appTheme') || 'light';
-        this.setState({dbDirectory, backupDirectory, appTheme});
+        this.setState({
+            dbDirectory: StorageHelpers.preference.get('storagePath'), 
+            backupDirectory: StorageHelpers.preference.get('backupPath'), 
+            appTheme: StorageHelpers.preference.get('appTheme') || 'light'
+        });
+
         this.listBackupFiles();
+
+        // update theme when os theme changed
+        remote.nativeTheme.on('updated', () => {
+            if (this.state.appTheme === 'system'){
+                this.changeTheme('system');
+            }
+        });
     }
 
     onClickTabHeader = selectedTab => {
@@ -109,13 +119,21 @@ class SettingsModal extends React.Component {
         await shell.openExternal(links[slug]);
     }
 
-    changeTheme = appTheme => {
+    /**
+     * Change current theme and apply
+     * 
+     * @param string selectedTheme 
+     */
+    changeTheme = (selectedTheme) => {
+        let applyTheme = selectedTheme === 'system' ? ThemeHelpers.getSystemTheme() : selectedTheme;
+
         document.body.classList.remove('light-theme');
         document.body.classList.remove('dark-theme');
-        document.body.classList.add(`${appTheme}-theme`);
-        StorageHelpers.preference.set('appTheme', appTheme);
+        document.body.classList.add(`${applyTheme}-theme`);
 
-        this.setState({appTheme});
+        StorageHelpers.preference.set('appTheme', selectedTheme);
+
+        this.setState({appTheme: selectedTheme});
     }
 
     render() {
@@ -262,26 +280,43 @@ class SettingsModal extends React.Component {
                             </div>
                         </div>
 
+                        {/* Theme Options */}
                         <div className={`content${selectedTab === 'themes' ? ' active' : ''}`}>
                             <div className="theme-section">
                                 <ul>
-                                    <li onClick={() => this.changeTheme('light')}
-                                        className={appTheme === 'light' ? 'active' : ''}>
+                                    <li onClick={() => this.changeTheme('light')} className={appTheme === 'light' ? 'active' : ''}>
                                         <div className="image-container">
-                                            <img src={"./images/themes/light-theme.png"} alt="Light Theme" width={240}/>
+                                            <img src={"./images/themes/light-theme.png"} alt="Light Theme"/>
                                         </div>
-                                        <div className="text-container">Light Theme</div>
+
+                                        <div className="text-container">
+                                            Light Theme
+                                        </div>
                                     </li>
-                                    <li onClick={() => this.changeTheme('dark')}
-                                        className={appTheme === 'dark' ? 'active' : ''}>
+
+                                    <li onClick={() => this.changeTheme('dark')} className={appTheme === 'dark' ? 'active' : ''}>
                                         <div className="image-container">
-                                            <img src={"./images/themes/dark-theme.png"} alt="Dark Theme" width={240}/>
+                                            <img src={"./images/themes/dark-theme.png"} alt="Dark Theme"/>
                                         </div>
-                                        <div className="text-container">Dark Theme</div>
+
+                                        <div className="text-container">
+                                            Dark Theme
+                                        </div>
+                                    </li>
+
+                                    <li onClick={() => this.changeTheme('system')} className={appTheme === 'system' ? 'active' : ''}>
+                                        <div className="image-container">
+                                            <img src={"./images/themes/system-theme.png"} alt="System Theme"/>
+                                        </div>
+
+                                        <div className="text-container">
+                                            Follow System Theme
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
+
                         <div className={`content${selectedTab === 'update' ? ' active' : ''}`}>
                             <div className="update-section">
                                 <div className="info">You are using version of <b>{version}</b></div>

@@ -1,3 +1,5 @@
+import { remote } from 'electron';
+
 import _ from 'lodash';
 import shortid from 'shortid';
 import Noty from "noty";
@@ -246,4 +248,26 @@ const StorageHelpers = {
     }
 }
 
-export {CommandHelpers, TagHelpers, ReduxHelpers, NotyHelpers, StorageHelpers};
+const ThemeHelpers = {
+    /**
+     * Get OS theme
+     * 
+     * @returns 'dark'|'light'
+     */
+    getSystemTheme: () => {
+        return remote.nativeTheme.shouldUseDarkColors ? 'dark' : 'light'
+    },
+
+    /**
+     * Get current app theme
+     * 
+     * @returns 'dark'|'light'
+     */
+    getCurrentAppTheme: () => {
+        const appTheme = StorageHelpers.preference.get('appTheme');
+
+        return appTheme === 'system' ? (remote.nativeTheme.shouldUseDarkColors ? 'dark' : 'light') : appTheme;
+    }
+}
+
+export {CommandHelpers, TagHelpers, ReduxHelpers, NotyHelpers, StorageHelpers, ThemeHelpers};

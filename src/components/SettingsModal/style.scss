@@ -242,8 +242,12 @@
 
           .image-container {
             border: 3px solid transparent;
-            width: 240px;
-            height: 180px;
+            width: 200px;
+            height: 80%;
+
+            img {
+              width: 100%;
+            }
           }
 
           .text-container {
