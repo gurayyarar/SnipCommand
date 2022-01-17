@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SvgIcon from "../SvgIcon";
+import Icon from '@mdi/react';
 
 import './style.scss';
 
@@ -29,7 +29,7 @@ class ContentHeader extends React.Component {
             <div className="comp_content-header">
                 <div className="left-side">
                     <div className="title-header">
-                        <SvgIcon name={icon}/>
+                        <Icon path={icon} size="20px"/>
                         <div className="title">{title}</div>
                     </div>
                     <div className="sub-text">{itemLengthText}</div>

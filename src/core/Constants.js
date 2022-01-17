@@ -1,11 +1,38 @@
-const MainMenus = [
-    {slug: "all_commands", icon: "inbox", name: "All Commands", type: "menu"},
-    {slug: "favourites", icon: "star", name: "Favourites", type: "menu"},
-    {slug: "untagged", icon: "tags", name: "Untagged", type: "menu"},
-    {slug: "trash", icon: "trash", name: "Trash", type: "menu"},
+import { mdiCardsHeartOutline, mdiSelectAll, mdiTagMultipleOutline, mdiDeleteVariant } from './Icons';
+
+// Sidebar Menu
+const MainMenus = [{
+        slug: 'all_commands',
+        icon: mdiSelectAll,
+        name: 'All Commands',
+        type: 'menu'
+    },
+    {
+        slug: 'favourites',
+        icon: mdiCardsHeartOutline,
+        name: 'Favourites',
+        type: 'menu'
+    },
+    {
+        slug: 'untagged',
+        icon: mdiTagMultipleOutline,
+        name: 'Untagged',
+        type: 'menu'
+    },
+    {
+        slug: 'trash',
+        icon: mdiDeleteVariant,
+        name: 'Trash',
+        type: 'menu'
+    },
 ];
 
-const SearchResult = {slug: "search_result", icon: "search", name: "Search Result", type: "search"};
+const SearchResult = {
+    slug: 'search_result',
+    icon: 'search',
+    name: 'Search Result',
+    type: 'search'
+};
 
 const Keys = {
     enter: 13,
@@ -23,4 +50,9 @@ const App = {
     dbName: 'snipcommand.db'
 }
 
-export {MainMenus, Keys, SearchResult, App};
+export {
+    MainMenus,
+    Keys,
+    SearchResult,
+    App
+};

@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import SvgIcon from "../SvgIcon";
+import Icon from '@mdi/react';
+import {
+    mdiMagnify,
+    mdiWindowClose,
+} from "../../core/Icons";
 
 import './style.scss';
 
@@ -44,14 +48,11 @@ class SearchField extends Component {
             <div className="comp_fe_search-field">
                 <div className="search-container">
                     <div className="search-icon-container">
-                        <SvgIcon name={"search"}/>
+                        <Icon path={mdiMagnify} size="20px"/>
                     </div>
 
-                    <input
-                        ref={(input) => { this.searchInput = input; }} 
-                        type="text"
-                        className="form-control"
-                        value={value || ""}
+                    <input ref={(input) => { this.searchInput = input; }} 
+                        type="text" className="form-control" value={value || ""}
                         placeholder={placeholder}
                         onChange={e => {
                             onChangeText && onChangeText(e.target.value)
@@ -64,7 +65,7 @@ class SearchField extends Component {
                                 <div onClick={() => {
                                     onClearClick && onClearClick()
                                 }} className="clear-icon-container">
-                                    <SvgIcon name={"times_circle"}/>
+                                    <Icon path={mdiWindowClose} size="20px"/>
                                 </div>
                             )
                             : null

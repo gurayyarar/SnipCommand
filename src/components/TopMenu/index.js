@@ -3,12 +3,20 @@ import PropTypes from 'prop-types';
 import { remote, ipcRenderer } from "electron";
 import { connect } from "react-redux";
 
-import SvgIcon from '../SvgIcon';
 import { SearchField } from "../FormElements";
 import { ReduxHelpers } from "../../core/Helpers";
 import { SET_SEARCH_QUERY } from "../../redux/actions/searchActions";
 import { MainMenus, SearchResult } from "../../core/Constants";
 import SettingsModal from "../SettingsModal";
+
+import Icon from '@mdi/react';
+import {
+    mdiWindowClose,
+    mdiMinus,
+    mdiFileTableBoxMultipleOutline,
+    mdiMinusBoxMultipleOutline,
+    mdiCogOutline,
+} from "../../core/Icons";
 
 import './style.scss';
 
@@ -36,6 +44,7 @@ class TopMenu extends Component {
             this.refClose.addEventListener('click', this.onClickClose);
             this.refMinimize.addEventListener('click', this.onClickMinimize);
             this.refMaximize.addEventListener('click', this.onClickMaximize);
+
             window.addEventListener('resize', this.onResizeWindow);
         }
     }
@@ -48,6 +57,7 @@ class TopMenu extends Component {
             this.refClose.removeEventListener('click', this.onClickClose);
             this.refMinimize.removeEventListener('click', this.onClickMinimize);
             this.refMaximize.removeEventListener('click', this.onClickMaximize);
+
             window.removeEventListener('resize', this.onResizeWindow);
         }
     }
@@ -61,6 +71,7 @@ class TopMenu extends Component {
     onChangeText = (text) => {
         const { setQuery, setSelectedMenu, setCommandList } = this.props;
         const selectedMenu = text === "" ? MainMenus[0] : SearchResult;
+
         setQuery(text);
         setSelectedMenu(selectedMenu);
         setCommandList(selectedMenu, text);
@@ -72,13 +83,11 @@ class TopMenu extends Component {
 
         return (
             <div className="comp_topmenu">
-                <SettingsModal
-                    show={showSettingsModal}
-                    selectedTab={settingsSelectedTab}
+                <SettingsModal show={showSettingsModal} selectedTab={settingsSelectedTab}
                     onClose={() => this.setState({ showSettingsModal: false })}
-                    tabChanged={settingsSelectedTab => this.setState({ settingsSelectedTab })}
-                />
+                    tabChanged={settingsSelectedTab => this.setState({ settingsSelectedTab })}/>
 
+                {/* Hamburger Menu */}
                 <div className="left-side">
                     {
                         isWindows
@@ -93,31 +102,37 @@ class TopMenu extends Component {
                     }
                 </div>
 
+                {/* Search */}
                 <div className="center-side">
-                    <SearchField
-                        placeholder="Search command"
-                        value={query}
+                    <SearchField placeholder="Search command" value={query}
                         onChangeText={text => this.onChangeText(text)}
-                        onClearClick={() => this.onChangeText("")}
-                    />
+                        onClearClick={() => this.onChangeText("")}/>
                 </div>
+
+                {/* Top Buttons */}
                 <div className="right-side">
+                    {/* Settings Button */}
                     <button className="btn-preferences" title="Preferences"
                         onClick={() => this.setState({ showSettingsModal: true, settingsSelectedTab: 'storage' })}>
-                        <SvgIcon name="settings" />
+                        <Icon path={mdiCogOutline} size="22px"/>
                     </button>
+
+                    {/* Window Buttons */}
                     {
                         isWindows
                             ? (
                                 <div className="command-buttons">
                                     <button ref={ref => this.refMinimize = ref} className="btn-menubar minimize">
-                                        <SvgIcon name="minimize" />
+                                        <Icon path={mdiMinus} size="20px"/>
                                     </button>
                                     <button ref={ref => this.refMaximize = ref} className="btn-menubar maximize">
-                                        <SvgIcon name={maximize ? "maximized" : "maximize"} />
+                                        {
+                                            maximize ? <Icon path={mdiMinusBoxMultipleOutline} size="16px"/> :
+                                                <Icon path={mdiFileTableBoxMultipleOutline} rotate={180} size="16px"/>
+                                        }
                                     </button>
                                     <button ref={ref => this.refClose = ref} className="btn-menubar close">
-                                        <SvgIcon name="close" />
+                                        <Icon path={mdiWindowClose} size="20px"/>
                                     </button>
                                 </div>
                             )
@@ -135,6 +150,7 @@ TopMenu.defaultProps = {
 
 const mapStateToProps = state => {
     const { query } = state.search;
+
     return { query };
 };
 

@@ -1,8 +1,14 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 
+import Icon from '@mdi/react';
+import {
+    mdiAt,
+    mdiFormatHorizontalAlignCenter,
+    mdiLockOpenOutline,
+} from "../../core/Icons";
+
 import './style.scss';
-import SvgIcon from "../SvgIcon";
 
 
 class CommandField extends Component {
@@ -63,22 +69,21 @@ class CommandField extends Component {
                         <div className="header">
                             <div className="navigation-nav left">
                                 <div title="Variable" onClick={() => this.onClickItem('variable')} className="button">
-                                    <SvgIcon name={"at"}/>
+                                    <Icon path={mdiAt} size="20px"/>
                                 </div>
-                                <div title="Choice (Select)" onClick={() => this.onClickItem('choice')}
-                                     className="button">
-                                    <SvgIcon name={"align-center"}/>
+
+                                <div title="Choice (Select)" onClick={() => this.onClickItem('choice')} className="button">
+                                    <Icon path={mdiFormatHorizontalAlignCenter} size="20px"/>
                                 </div>
+
                                 <div title="Password" onClick={() => this.onClickItem('password')} className="button">
-                                    <SvgIcon name={"lock"}/>
+                                    <Icon path={mdiLockOpenOutline} size="20px"/>
                                 </div>
                             </div>
+
                             <div className="navigation-nav right">
-                                <div
-                                    onClick={this.toggleFullscreen}
-                                    title={fullscreen ? "Exit Full Screen" : "Full Screen"}
-                                    className="button"
-                                >
+                                <div onClick={this.toggleFullscreen} className="button"
+                                    title={fullscreen ? "Exit Full Screen" : "Full Screen"}>
                                     {
                                         fullscreen
                                             ? <i className="rmel-iconfont rmel-icon-fullscreen-exit"> </i>
@@ -88,14 +93,8 @@ class CommandField extends Component {
                             </div>
                         </div>
                         <div className="body">
-                            <textarea
-                                name={name}
-                                id={name}
-                                ref={ref => this.refInput = ref}
-                                onChange={this.onChange}
-                                value={value}
-                                spellCheck={false}
-                            />
+                            <textarea name={name} id={name} ref={ref => this.refInput = ref}
+                                onChange={this.onChange} value={value} spellCheck={false} />
                         </div>
                     </div>
 

@@ -1,3 +1,8 @@
+@import 'variables.scss';
+
+$activeBackgroundColor: #8a8500;
+$activeBackgroundTextColor: #dddddd;
+
 body {
   &.dark-theme {
     * {
@@ -48,7 +53,7 @@ body {
             &.minimize,
             &.maximize {
               svg {
-                stroke: #cccccc;
+                fill: $activeBackgroundColor !important;
               }
 
               &:hover {
@@ -83,14 +88,14 @@ body {
     .comp_fe_search-field {
       .search-container {
         .search-icon-container {
-          svg {
-            fill: rgba(255, 255, 255, 0.42);
+          svg, path {
+            fill: $activeBackgroundColor !important;
           }
         }
 
         .clear-icon-container {
-          svg {
-            fill: rgba(255, 255, 255, 0.42);
+          svg, path {
+            fill: $activeBackgroundColor !important;
           }
         }
 
@@ -149,17 +154,18 @@ body {
         .menu-list-item {
           .text-container {
             color: #eeeeee;
+            padding: 5px 0px;
           }
 
           &.active {
-            background: #0078d4;
+            background: $activeBackgroundColor;
 
             .text-container {
-              color: #ffffff;
+              color: $activeBackgroundTextColor;
             }
 
-            svg {
-              fill: #ffffff !important;
+            svg, path {
+              fill: $activeBackgroundTextColor !important;
             }
           }
 
@@ -170,8 +176,8 @@ body {
           }
 
           .icon-container {
-            svg {
-              fill: #cccccc;
+            svg, path {
+              fill: #cccccc !important;
             }
           }
         }
@@ -185,8 +191,8 @@ body {
 
         .left-side {
           .title-header {
-            svg {
-              fill: #cccccc;
+            svg, path {
+              fill: $activeBackgroundColor !important;
             }
 
             .title {
@@ -211,8 +217,8 @@ body {
         }
 
         .right-side {
-          svg {
-            fill: #fabe77;
+          svg, path {
+            fill: $activeBackgroundColor !important;
           }
         }
 
@@ -238,8 +244,8 @@ body {
 
       .command-list-menu {
         li {
-          svg {
-            fill: #cccccc;
+          svg, path {
+            fill: $activeBackgroundColor !important;
           }
 
           &.favourite-true {

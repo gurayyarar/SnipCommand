@@ -1,3 +1,5 @@
+@import 'variables.scss';
+
 body {
   &.light-theme {
     * {
@@ -47,8 +49,8 @@ body {
           .btn-menubar {
             &.minimize,
             &.maximize {
-              svg {
-                stroke: #666;
+              svg, path {
+                fill: $activeBackgroundColor !important;
               }
 
               &:hover {
@@ -83,14 +85,14 @@ body {
     .comp_fe_search-field {
       .search-container {
         .search-icon-container {
-          svg {
-            fill: #aaa;
+          svg, path {
+            fill: $activeBackgroundColor !important;
           }
         }
 
         .clear-icon-container {
-          svg {
-            fill: #aaa;
+          svg, path {
+            fill: $activeBackgroundColor !important;
           }
         }
 
@@ -152,14 +154,14 @@ body {
           }
 
           &.active {
-            background: #0078d4;
+            background: $activeBackgroundColor;
 
             .text-container {
-              color: #ffffff;
+              color: $activeBackgroundTextColor;
             }
 
             svg {
-              fill: #ffffff !important;
+              fill: $activeBackgroundTextColor !important;
             }
           }
 
@@ -170,7 +172,7 @@ body {
           }
 
           .icon-container {
-            svg {
+            svg, path {
               fill: #888;
             }
           }
@@ -213,8 +215,8 @@ body {
         }
 
         .right-side {
-          svg {
-            fill: #fabe77;
+          svg, path {
+            fill: $activeBackgroundTextColor;
           }
         }
 
@@ -239,21 +241,22 @@ body {
 
       .command-list-menu {
         li {
-          svg {
-            fill: #888888;
+          svg, path {
+            fill: $activeBackgroundColor !important;
+            stroke: $activeBackgroundColor !important;
           }
 
           &.favourite-true {
-            svg {
-              path {
-                fill: #fabe77;
-              }
+            svg, path {
+              fill: $activeBackgroundColor !important;
+              stroke: $activeBackgroundColor !important;
             }
           }
 
           &.favourite-false {
-            svg {
-              stroke: #a0a0a0;
+            svg, path {
+              fill: $activeBackgroundColor !important;
+              stroke: $activeBackgroundColor !important;
             }
           }
 

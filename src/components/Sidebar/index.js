@@ -1,14 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {MainMenus, SearchResult} from "../../core/Constants";
-import {ReduxHelpers} from "../../core/Helpers";
+import { MainMenus, SearchResult } from "../../core/Constants";
+
+import Icon from '@mdi/react';
+import { mdiTagTextOutline, mdiSelectSearch, mdiPlus } from "../../core/Icons";
+
+import { ReduxHelpers } from "../../core/Helpers";
 import SnippetCrudModal from '../SnippetCrudModal';
-import SvgIcon from "../SvgIcon";
+
 import {SET_SEARCH_QUERY} from "../../redux/actions/searchActions";
 
 import './style.scss';
-
 
 class Sidebar extends React.Component {
     state = {
@@ -34,27 +37,32 @@ class Sidebar extends React.Component {
         const {snippetModalVisible} = this.state;
 
         return (
-            <div className="comp_sidebar">
-                <SnippetCrudModal
-                    show={snippetModalVisible}
-                    onClose={() => this.setState({snippetModalVisible: false})}
-                />
+            <nav className="comp_sidebar">
+                <SnippetCrudModal show={snippetModalVisible}
+                    onClose={() => this.setState({snippetModalVisible: false})}/>
 
+                {/* Nav Menus */}
                 <div className="header">
-                    <div onClick={() => this.setState({snippetModalVisible: true})}
-                         className="new-snippet-container">
-                        <div className="text">New Command Snippet</div>
-                        <div className="plus">+</div>
+                    {/* Add New */}
+                    <div onClick={() => this.setState({snippetModalVisible: true})} className="new-snippet-container">
+                        <div className="text">
+                            New Command Snippet
+                        </div>
+
+                        <div className="plus">
+                            <Icon path={mdiPlus} size="20px"/>
+                        </div>
                     </div>
 
+                    {/* Search Result */}
                     {
-                        query !== ""
+                        query !== ''
                             ? (
                                 <div className="search-result-container">
                                     <ul className="menu-list">
                                         <li className={`menu-list-item ${selectedMenu.slug === SearchResult.slug ? 'active' : ""}`}>
                                             <div className="icon-container">
-                                                <SvgIcon name={SearchResult.icon}/>
+                                                <Icon path={mdiSelectSearch} size="20px"/>
                                             </div>
                                             <div className="others-container">
                                                 <div className="text-container">{SearchResult.name}</div>
@@ -66,21 +74,25 @@ class Sidebar extends React.Component {
                             : null
                     }
 
+                    {/* Sidebar Menus */}
                     <div className="main-menu-container">
                         <ul className="menu-list">
                             {
                                 MainMenus.map((value, index) => {
                                     let containerClassName = 'menu-list-item';
+
                                     if (value.slug === selectedMenu.slug) containerClassName += ' active';
 
                                     return (
-                                        <li key={index} onClick={() => this.setSelectedMenu(value, 'menu')}
-                                            className={containerClassName}>
+                                        <li key={index} onClick={() => this.setSelectedMenu(value, 'menu')} className={containerClassName}>
                                             <div className="icon-container">
-                                                <SvgIcon name={value.icon}/>
+                                                <Icon path={value.icon} size="20px"/>
                                             </div>
+
                                             <div className="others-container">
-                                                <div className="text-container">{value.name}</div>
+                                                <div className="text-container">
+                                                    {value.name}
+                                                </div>
                                             </div>
                                         </li>
                                     )
@@ -88,12 +100,18 @@ class Sidebar extends React.Component {
                             }
                         </ul>
                     </div>
-                    <div className="sidebar-title">TAGS</div>
+
+                    <div className="sidebar-title">
+                        TAGS
+                    </div>
                 </div>
+                
                 <div className="body">
                     {
                         tags.length === 0
-                            ? <div className="no-item-text">There isn't any tag yet.</div>
+                            ? <div className="no-item-text">
+                                There isn't any tag yet.
+                            </div>
                             : (
                                 <ul className="menu-list">
                                     {
@@ -105,8 +123,9 @@ class Sidebar extends React.Component {
                                                 <li key={index} onClick={() => this.setSelectedMenu(value, 'tag')}
                                                     className={containerClassName}>
                                                     <div className="icon-container">
-                                                        <SvgIcon name={"hashtag"}/>
+                                                        <Icon path={mdiTagTextOutline} size="15px"/>
                                                     </div>
+
                                                     <div className="others-container">
                                                         <div className="text-container">{value}</div>
                                                     </div>
@@ -118,7 +137,7 @@ class Sidebar extends React.Component {
                             )
                     }
                 </div>
-            </div>
+            </nav>
         )
     }
 }
