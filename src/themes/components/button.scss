@@ -1,0 +1,31 @@
+.btn {
+    &.btn-success {
+        background: $btnSuccess;
+        border: 1px solid $btnSuccess;
+        color: $whiteBgColor;
+
+        &:hover {
+            background: darken($btnSuccess, 4);
+        }
+    }
+
+    &.btn-default {
+        border: 1px solid $primaryBorderColor;
+        background: $primaryBackgroundColor;
+        color: $primaryDarkTextColor;
+
+        &:hover {
+            background: darken($primaryBackgroundColor, 3);
+        }
+    }
+
+    &.btn-danger {
+        background: $btnDanger;
+        border: 1px solid $btnDanger;
+        color: $whiteBgColor;
+
+        &:hover {
+            background: darken($btnDanger, 8);
+        }
+    }
+}

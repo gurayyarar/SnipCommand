@@ -88,3 +88,56 @@
     }
   }
 }
+
+.comp_snippet-generator-modal {
+  .modal-body {
+    .title {
+      color: $primaryTextColor;
+      user-select: none;
+    }
+
+    .command-container,
+    .tags-container,
+    .command-params-container,
+    .description-container {
+      border-bottom: 1px solid $primaryBorderColor;
+    }
+
+    .description-container {
+      .description-text {
+        color: $primaryDarkTextColor;
+      }
+    }
+
+    .tags-container {
+      ul {
+        li {
+          background: $snippetTagBgColor;
+          color: $primaryTextColor;
+          transition: 0.2s all ease-in-out;
+
+          &:hover {
+            background-color: $menuItemHoverBgColor;
+          }
+        }
+      }
+    }
+
+    .command-container {
+      .code {
+        color: $primaryGhostTextColor;
+
+        span {
+          font-weight: bold;
+          color: $formGroupError;
+        }
+      }
+    }
+
+    .command-params-container {
+      .form-label {
+        color: $primaryDarkTextColor;
+      }
+    }
+  }
+}

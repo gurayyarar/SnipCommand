@@ -304,7 +304,7 @@ class SettingsModal extends React.Component {
                                                         ({file?.timeAgo})
                                                     </div>
 
-                                                    <span onClick={() => this.restoreFromBackup(file)}>
+                                                    <span className='restore' onClick={() => this.restoreFromBackup(file)}>
                                                         Restore
                                                     </span>
                                                 </li>

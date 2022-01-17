@@ -1,0 +1,16 @@
+.noty_theme__sunset {
+    &.noty_type__success {
+        background-color: #007A5A;
+        color: #fff;
+    }
+
+    &.noty_type__info {
+        background-color: #0078d4;
+        color: #ffffff;
+    }
+
+    &.noty_type__error {
+        background-color: #da4453;
+        color: #ffffff;
+    }
+}

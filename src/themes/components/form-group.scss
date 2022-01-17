@@ -1,0 +1,271 @@
+.form-group {
+    input {
+        color: $primaryDarkTextColor !important;
+    }
+
+    &.has-error {
+        .form-label {
+            color: $formGroupError;
+        }
+
+        .form-control,
+        .command-container {
+            border-color: $formGroupError !important;
+
+            .header {
+                border-bottom-color: $formGroupError !important;
+                background: $formGroupError;
+
+                i {
+                    color: $primaryTextColor !important;
+                }
+            }
+        }
+    }
+}
+
+.comp_fe_text-field {
+    .form-group {
+        label {
+            &.error-label {
+                color: $formGroupError;
+            }
+        }
+
+        .form-control {
+            color: $primaryTextColor;
+            background-color: $primaryBackgroundColor;
+            border: 1px solid $primaryBorderColor;
+        }
+    }
+}
+
+.comp_fe_password-field {
+    .form-group {
+        label {
+            &.error-label {
+                color: $formGroupError;
+            }
+        }
+
+        .form-control {
+            color: $primaryTextColor;
+            background-color: $primaryBackgroundColor;
+            border: 1px solid $primaryBorderColor;
+        }
+
+        button {
+            background: $primaryBackgroundColor;
+            border-left: 1px solid $primaryBorderColor;
+
+            &:hover {
+                background: $snippetBgHoverColor;
+            }
+
+            svg,
+            path {
+                stroke: $snippetTagBgColor;
+            }
+        }
+    }
+}
+
+.comp_fe_choice-field {
+    .form-group {
+        label {
+            &.error-label {
+                color: $formGroupError;
+            }
+        }
+
+        .form-control {
+            color: $primaryTextColor;
+            background-color: transparent;
+            border: 1px solid $primaryBorderColor;
+
+            option {
+                background: $primaryBackgroundColor;
+                color: $primaryGhostTextColor;
+            }
+        }
+    }
+}
+
+.comp_fe_markdown-field {
+    .rc-md-editor {
+        border: 1px solid $primaryBorderColor;
+        background-color: $primaryBackgroundColor;
+
+        .rmel-iconfont {
+            color: $primaryDarkTextColor;
+
+            &:hover {
+                color: $primaryDarkTextColor;
+            }
+        }
+
+        textarea {
+            background-color: $primaryBackgroundColor !important;
+            color: $primaryDarkTextColor !important;
+        }
+
+        .custom-html-style {
+            color: #dddddd;
+        }
+
+        .rc-md-navigation {
+            border-bottom: 1px solid $primaryBorderColor;
+            background-color: $primaryBackgroundColor;
+        }
+    }
+
+    .form-group {
+        .title-area {
+            .md-link-text {
+                color: #aaaaaa;
+            }
+        }
+
+        label {
+            &.error-label {
+                color: $formGroupError;
+            }
+        }
+
+        .form-control {
+            color: $primaryDarkTextColor;
+            background-color: $primaryBackgroundColor;
+            border: 1px solid $primaryBorderColor;
+        }
+    }
+}
+
+.comp_fe_tags-field {
+    .form-group {
+
+        label {
+
+            &.info-text {
+                color: $primaryGhostTextColor;
+            }
+
+            &.error-label {
+                color: $formGroupError;
+            }
+        }
+
+        .form-control {
+            color: $primaryDarkTextColor;
+            background-color: $primaryBackgroundColor;
+            border: 1px solid $primaryBorderColor;
+        }
+    }
+
+    .tags-input-main-container {
+        color: $primaryDarkTextColor;
+        background-color: $primaryBackgroundColor;
+        border: 1px solid $primaryBorderColor;
+
+        .tag-wrapper {
+            border: 1px solid $primaryGhostTextColor;
+            background: $snippetBgColor;
+
+            .close-link {
+                background: $snippetBgColor;
+            }
+        }
+
+        .input-container {
+            input {
+                background-color: $primaryBackgroundColor;
+                color: $primaryTextColor;
+
+                width: 98%;
+                padding-left: 5px;
+
+                &::placeholder {
+                    color: $primaryTextColor;
+
+                }
+            }
+
+            .auto-suggestion-container {
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+
+                ul {
+                    background: $snippetBgColor;
+                    border: 1px solid $activeBackgroundColor;
+
+                    li {
+                        border-bottom: 1px solid $snippetBorderColor;
+
+                        &:last-child {
+                            border: none;
+                        }
+
+                        b {
+                            color: $primaryTextColor;
+                        }
+
+                        &:hover {
+                            background: $snippetBgHoverColor;
+                        }
+
+                        &.active {
+                            background: $closeWindowBgColor;
+                            color: $primaryDarkTextColor;
+
+                            b {
+                                color: $primaryTextColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.comp_fe_command-field {
+    .form-group {
+        label {
+            &.error-label {
+                color: $formGroupError;
+            }
+        }
+
+        .form-control {
+            color: $primaryDarkTextColor;
+            background-color: $primaryBackgroundColor;
+            border: 1px solid $primaryBorderColor;
+        }
+    }
+
+    .command-container {
+        border: 1px solid $primaryBorderColor;
+
+        .header {
+            border-bottom: 1px solid $primaryBorderColor;
+            background-color: $primaryBackgroundColor;
+
+            .button {
+
+                svg,
+                path {
+                    fill: $primaryDarkTextColor !important;
+                }
+
+                i {
+                    color: $primaryTextColor;
+                }
+            }
+        }
+
+        .body {
+            textarea {
+                background: $primaryBackgroundColor;
+                color: $primaryTextColor;
+            }
+        }
+    }
+}

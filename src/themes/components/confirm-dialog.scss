@@ -1,0 +1,25 @@
+.comp_confirm-dialog {
+    background: $modalOverlayBackground;
+
+    .confirm-dialog-content {
+        background: $modalBackground;
+
+        .confirm-dialog-header {
+            border-bottom: 1px solid $primaryBorderColor;
+
+            .title {
+                color: $primaryDarkTextColor;
+            }
+        }
+
+        .confirm-dialog-body {
+            .text {
+                color: $primaryDarkTextColor;
+            }
+        }
+
+        .confirm-dialog-footer {
+            border-top: 1px solid $primaryBorderColor;
+        }
+    }
+}

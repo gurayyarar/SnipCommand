@@ -1,0 +1,169 @@
+.comp_modal {
+    &.visible {
+        .modal-overlay {
+            background: $modalOverlayBackground;
+        }
+    }
+
+    .modal-header {
+        border-bottom: 1px solid $primaryBorderColor;
+
+        .btn-close {
+            background: transparent;
+
+            span {
+                background: $closeWindowBgColor;
+                transition: 0.2s all ease-in-out;
+            }
+
+            &:hover {
+                span {
+                    background: $closeWindowBgHoverColor;
+                }
+            }
+        }
+
+        .title {
+            color: $primaryDarkTextColor;
+        }
+    }
+
+    .modal-content {
+        background-color: $modalBackground;
+
+        .modal-footer {
+            border-top: 1px solid $primaryBorderColor;
+        }
+    }
+}
+
+.comp_settings-modal {
+    .tabs-header-container {
+        border-bottom: 1px solid $primaryBorderColor;
+
+        ul {
+            li {
+                color: $primaryGhostTextColor;
+
+                &.active {
+                    background: $activeBackgroundColor;
+                    color: $activeBackgroundTextColor;
+                }
+            }
+        }
+    }
+
+    .tabs-content-container {
+        .content {
+            .sub-title {
+                color: $primaryDarkTextColor;
+            }
+
+            .form-control {
+                &:read-only {
+                    opacity: 50%;
+                    cursor: not-allowed;
+                }
+            }
+
+            .info {
+                color: $primaryGhostTextColor;
+            }
+
+            .storage-restore-container {
+                ul {
+                    border: 1px solid $primaryBorderColor;
+
+                    li {
+                        background-color: $snippetBgColor;
+                        color: $primaryGhostTextColor;
+                        transition: 0.1s all ease-in-out;
+
+                        &:hover {
+                            background: $snippetBgHoverColor;
+                        }
+
+                        .time-ago {
+                            color: $primaryGhostTextColor;
+                            opacity: 60%;
+                        }
+
+                        .restore {
+                            color: $closeWindowBgColor;
+                            transition: 0.2s all ease-in-out;
+                            font-weight: bold;
+
+                            &:hover {
+                                color: $closeWindowBgHoverColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .theme-section {
+            .text-container {
+                color: $primaryGhostTextColor;
+            }
+
+            ul {
+                li {
+                    &.active {
+                        .image-container {
+                            border: 3px solid $activeBackgroundColor;
+                        }
+                    }
+                }
+            }
+        }
+
+        .about-section {
+            * {
+                color: $primaryGhostTextColor;
+            }
+
+            .product-name {
+                small {
+                    color: $primaryGhostTextColor;
+                    opacity: 70%;
+                }
+            }
+
+            .created-by {
+                .author {
+                    color: $closeWindowBgColor;
+                }
+            }
+
+            .description {
+                color: $primaryGhostTextColor;
+            }
+
+            .link-list {
+                .link {
+                    color: $closeWindowBgColor;
+                    opacity: 70%;
+                }
+            }
+        }
+
+        .update-section {
+            .info {
+                color: $primaryGhostTextColor !important;
+            }
+        }
+    }
+}
+
+.comp_snippet-crud-modal {
+    .modal-body {
+      .form-label {
+        color: $primaryTextColor;
+      }
+
+      .info-text {
+        color: $primaryDarkTextColor !important;
+      }
+    }
+  }

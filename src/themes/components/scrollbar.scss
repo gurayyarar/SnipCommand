@@ -1,0 +1,13 @@
+* {
+    &::-webkit-scrollbar-track {
+        background: $scrollbarTrackBgColor;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $scrollbarThumbColor;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: $scrollbarThumbHoverColor;
+    }
+}

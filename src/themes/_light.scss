@@ -1,10 +1,9 @@
-@import 'variables.scss';
-
 $whiteBgColor: #fff;
 
 $primaryBackgroundColor: #F8F8FA;
 $primaryBorderColor: #e4e4e4;
 $primaryTextColor: #666666;
+$primaryDarkTextColor: #282C34;
 $primaryGhostTextColor: #777777;
 
 $menuItemHoverBgColor: rgba(0, 0, 0, 0.1);
@@ -15,25 +14,27 @@ $snippetBgColor: #ffffff;
 $snippetBorderColor: #dfdfdf;
 $snippetBgHoverColor: #F8F8FA;
 $snippetTagBgColor: #f3f3f3;
+
 $footerBorderColor: #F8F8FA;
 
 $closeWindowBgColor: #d6672b;
+$closeWindowBgHoverColor: #e4763b;
+
+$modalOverlayBackground: rgba(0, 0, 0, 0.5);
+$modalBackground: #fff;
+
+$formGroupError: #F44336;
+
+$btnSuccess: #0078d4;
+$btnDanger: #da4453;
+
+$scrollbarTrackBgColor: #f1f1f1;
+$scrollbarThumbColor: rgba(0, 0, 0, 0.25);
+$scrollbarThumbHoverColor: #666666;
 
 body {
   &.light-theme {
-    * {
-      &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.25);
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background: #666666;
-      }
-    }
+    @import './components/scrollbar.scss';
 
     @import './components/top-menu.scss';
 
@@ -47,470 +48,14 @@ body {
 
     @import './components/footer.scss';
 
-    .comp_confirm-dialog {
-      background: rgba(0, 0, 0, 0.5);
+    @import './components/confirm-dialog.scss';
 
-      .confirm-dialog-content {
-        background: #fff;
+    @import './components/modal.scss';
 
-        .confirm-dialog-header {
-          border-bottom: 1px solid #eee;
+    @import './components/form-group.scss';
 
-          .title {
-            color: #333;
-          }
-        }
+    @import './components/button.scss';
 
-        .confirm-dialog-body {
-          .text {
-            color: #333;
-          }
-        }
-
-        .confirm-dialog-footer {
-          border-top: 1px solid #eee;
-        }
-      }
-    }
-
-    .comp_modal {
-      &.visible {
-        .modal-overlay {
-          background: rgba(0, 0, 0, 0.5);
-        }
-      }
-
-      .modal-header {
-        border-bottom: 1px solid #eee;
-
-        .btn-close {
-          background: transparent;
-
-          &:hover {
-            span {
-              background: #3f0e40;
-            }
-          }
-
-          span {
-            background: #444;
-          }
-        }
-
-        .title {
-          color: #333;
-        }
-      }
-
-      .modal-content {
-        background: #fff;
-
-        .modal-footer {
-          border-top: 1px solid #eee;
-        }
-      }
-    }
-
-    .comp_settings-modal {
-      .tabs-header-container {
-        border-bottom: 1px solid #eeeeee;
-
-        ul {
-          li {
-            &.active {
-              background: #0078d4;
-              color: #ffffff;
-            }
-          }
-        }
-      }
-
-      .tabs-content-container {
-        .content {
-          .sub-title {
-            color: #444444;
-          }
-
-          .form-control {
-            &:read-only {
-              background: #eeeeee;
-            }
-          }
-
-          .info {
-            color: #999;
-          }
-
-          .storage-restore-container {
-            ul {
-              border: 1px solid #ced4da;
-
-              li {
-                &:hover {
-                  background: #eeeeee;
-                }
-              }
-            }
-          }
-        }
-
-        .about-section {
-          * {
-            color: #444444;
-          }
-
-          .product-name {
-            small {
-              color: #999999;
-            }
-          }
-
-          .created-by {
-            .author {
-              color: #0078d4;
-            }
-          }
-
-          .description {
-            color: #999999;
-          }
-
-          .link-list {
-            .link {
-              color: #0078d4;
-            }
-          }
-        }
-
-        .update-section {
-          .info {
-            color: #444444 !important;
-          }
-        }
-      }
-    }
-
-    .form-group {
-      &.has-error {
-        .form-label {
-          color: #F44336;
-        }
-
-        .form-control,
-        .command-container {
-          border-color: #F44336 !important;
-
-          .header {
-            border-bottom-color: #F44336 !important;
-            background: #F44336;
-
-            i {
-              color: #ffffff !important;
-            }
-          }
-        }
-      }
-    }
-
-    .comp_fe_text-field {
-      .form-group {
-        label {
-          &.error-label {
-            color: #F44336;
-          }
-        }
-
-        .form-control {
-          color: #495057;
-          background-color: #fff;
-          border: 1px solid #ced4da;
-        }
-      }
-    }
-
-    .comp_fe_password-field {
-      .form-group {
-        label {
-          &.error-label {
-            color: #F44336;
-          }
-        }
-
-        .form-control {
-          color: #495057;
-          background-color: #fff;
-          border: 1px solid #ced4da;
-        }
-
-        button {
-          background: #ffffff;
-          border-left: 1px solid #ced4da;
-
-          &:hover {
-            background: #f9f9f9;
-          }
-
-          svg {
-            stroke: #555555;
-          }
-        }
-      }
-    }
-
-    .comp_fe_choice-field {
-      .form-group {
-        label {
-          &.error-label {
-            color: #F44336;
-          }
-        }
-
-        .form-control {
-          color: #495057;
-          background-color: #fff;
-          border: 1px solid #ced4da;
-        }
-      }
-    }
-
-    .comp_fe_markdown-field {
-      .rc-md-editor {
-        border: 1px solid #ced4da;
-
-        .rc-md-navigation {
-          border-bottom: 1px solid #ced4da;
-        }
-      }
-
-      .form-group {
-        .title-area {
-          .md-link-text {
-            color: #777777;
-          }
-        }
-
-        label {
-          &.error-label {
-            color: #F44336;
-          }
-        }
-
-        .form-control {
-          color: #495057;
-          background-color: #fff;
-          border: 1px solid #ced4da;
-        }
-      }
-    }
-
-    .comp_fe_tags-field {
-      .form-group {
-
-        label {
-
-          &.info-text {
-            color: #777777;
-          }
-
-          &.error-label {
-            color: #F44336;
-          }
-        }
-
-        .form-control {
-          color: #495057;
-          background-color: #fff;
-          border: 1px solid #ced4da;
-        }
-      }
-
-      .tags-input-main-container {
-        color: #495057;
-        background-color: #fff;
-        border: 1px solid #ced4da;
-
-        .tag-wrapper {
-          border: 1px solid #ddd;
-          background: #eee;
-
-          .close-link {
-            background: #dddddd;
-          }
-        }
-
-        .input-container {
-          .auto-suggestion-container {
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-
-            ul {
-              background: #fff;
-
-              li {
-                border-bottom: 1px solid #dddddd;
-
-                b {
-                  color: #000;
-                }
-
-                &:hover {
-                  background: #eee;
-                }
-
-                &.active {
-                  background: #1164a3;
-                  color: #ffffff;
-
-                  b {
-                    color: #ffffff;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .comp_fe_command-field {
-      .form-group {
-        label {
-          &.error-label {
-            color: #F44336;
-          }
-        }
-
-        .form-control {
-          color: #495057;
-          background-color: #fff;
-          border: 1px solid #ced4da;
-        }
-      }
-
-      .command-container {
-        background-color: #fff;
-        border: 1px solid #ced4da;
-
-        .header {
-          border-bottom: 1px solid #ced4da;
-          background: #f5f5f5;
-
-          .button {
-            &:hover {
-              svg {
-                fill: #000000;
-              }
-            }
-
-            svg {
-              fill: #757575;
-            }
-
-            &:hover {
-              i {
-                color: #000000;
-              }
-            }
-
-            i {
-              color: #757575;
-            }
-          }
-        }
-      }
-    }
-
-    .btn {
-      &.btn-success {
-        border: 1px solid #0078d4;
-        background: #0078d4;
-        color: #ffffff;
-
-        &:hover {
-          background: darken(#0078d4, 4);
-        }
-      }
-
-      &.btn-default {
-        border: 1px solid #BBBABB;
-        background: #ffffff;
-
-        &:hover {
-          background: darken(#ffffff, 8);
-        }
-      }
-
-      &.btn-danger {
-        border: 1px solid #da4453;
-        background: #da4453;
-        color: #ffffff;
-
-        &:hover {
-          background: darken(#da4453, 8);
-        }
-      }
-    }
-
-    .comp_snippet-generator-modal {
-      .modal-body {
-        .title {
-          color: #000000;
-        }
-
-        .command-container,
-        .tags-container,
-        .command-params-container,
-        .description-container {
-          border-bottom: 1px solid #eee;
-        }
-
-        .description-container {
-          .description-text {
-            color: #666666;
-          }
-        }
-
-        .tags-container {
-          ul {
-            li {
-              background: #e5e5e5;
-            }
-          }
-        }
-
-        .command-container {
-          .code {
-            color: #666666;
-
-            span {
-              font-weight: bold;
-              color: #da4453;
-            }
-          }
-        }
-
-        .command-params-container {
-          .form-label {
-            color: #666666;
-          }
-        }
-      }
-    }
-
-    .noty_theme__sunset {
-      &.noty_type__success {
-        background-color: #007A5A;
-        color: #fff;
-      }
-
-      &.noty_type__info {
-        background-color: #0078d4;
-        color: #ffffff;
-      }
-
-      &.noty_type__error {
-        background-color: #da4453;
-        color: #ffffff;
-      }
-    }
+    @import './components/notification.scss';
   }
 }
