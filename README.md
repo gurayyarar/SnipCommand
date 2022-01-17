@@ -57,7 +57,7 @@ yarn release
 
 ## Releases
 
-Download latest relase builds at [releases](https://github.com/EgoistDeveloper/SnipCommand/releases) page.
+Download latest release builds at [releases](https://github.com/EgoistDeveloper/SnipCommand/releases) page.
 
 ## Documentation
 
