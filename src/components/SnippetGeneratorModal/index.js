@@ -11,6 +11,9 @@ import {CommandHelpers, NotyHelpers} from "../../core/Helpers";
 import ChoiceField from "../FormElements/ChoiceField";
 import PasswordGeneratorField from "../FormElements/PasswordGeneratorField";
 
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { paraisoDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 import './style.scss';
 
 
@@ -136,15 +139,20 @@ class SnippetGeneratorModal extends React.Component {
 
         return (
             <div className="comp_snippet-generator-modal">
-                <Modal
-                    show={show}
-                    onClose={this.onClose}
-                    title={item?.title}
-                    footerTemplate={this._footer}
-                >
+                <Modal show={show} onClose={this.onClose}
+                    title={item?.title} footerTemplate={this._footer}>
+
                     <div className="h-separator command-container">
-                        <div className="title">Command</div>
-                        <div className="code" dangerouslySetInnerHTML={{__html: commandHtml}}/>
+                        <div className="title">
+                            Command
+                        </div>
+
+                        {/* Command Block */}
+                        <div className='code'>
+                            <SyntaxHighlighter language="dsconfig" style={paraisoDark}>
+                                {commandHtml}
+                            </SyntaxHighlighter>
+                        </div>
                     </div>
                     {
                         tags.length > 0

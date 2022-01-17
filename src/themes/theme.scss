@@ -4,3 +4,7 @@ html {
 
 @import "./dark";
 @import './light';
+
+@import './components/syntax-highlighter.scss';
+
+@import './components/notification.scss';

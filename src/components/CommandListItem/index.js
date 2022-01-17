@@ -9,6 +9,9 @@ import Api from "../../core/Api";
 import {openConfirmDialog} from "../ConfirmDialog";
 import SnippetGeneratorModal from "../SnippetGeneratorModal";
 
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { paraisoDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 import Icon from '@mdi/react';
 import {
     mdiCardsHeartOutline,
@@ -16,7 +19,8 @@ import {
     mdiDeleteSweepOutline,
     mdiCircleEditOutline,
     mdiDeleteOutline,
-    mdiBackupRestore
+    mdiBackupRestore,
+    mdiConsoleLine,
 } from "../../core/Icons";
 
 import './style.scss';
@@ -141,10 +145,19 @@ class CommandListItem extends Component {
                 <div onClick={() => this.setState({showGeneratorModal: true})} className="sub-container">
                     <div className="left-side">
                         <div className="title">
-                            {item?.title}
+                            <Icon path={mdiConsoleLine} size="15px"/>
+
+                            <span>
+                                {item?.title}
+                            </span>
                         </div>
 
-                        <div className="code" dangerouslySetInnerHTML={{__html: commandHtml}}/>
+                        {/* Command Block */}
+                        <div className='code'>
+                            <SyntaxHighlighter language="dsconfig" style={paraisoDark}>
+                                {commandHtml}
+                            </SyntaxHighlighter>
+                        </div>
 
                         <ul className="tags-list">
                             {

@@ -44,13 +44,19 @@
     .code {
       color: $primaryTextColor;
 
-      span {
-        color: #da4453;
+      pre {
+        background: transparent !important;
+        padding: 0px !important;
       }
     }
 
     .title {
       color: $primaryTextColor;
+
+      span {
+        vertical-align: top;
+        margin-left: 5px;
+      }
     }
 
     .tags-list {
