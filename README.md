@@ -1,7 +1,5 @@
 # SnipCommand
 
-A command snippets manager for organize and copy fast. You no longer need to remembering commands or looking at command history.
-
 <p align="center">
   <img src="./public/images/logo/snip_command.png" width="200">
 </p>
