@@ -8,16 +8,30 @@ import CommandArea from "./components/CommandArea";
 import { StorageHelpers, ThemeHelpers } from "./core/Helpers";
 import Footer from "./components/Footer";
 
+import LoadingScreen from 'react-loading-screen'
+
 import './components/common.scss';
 
 
 class App extends Component {
+    state = {
+        isLoading: true
+    }
+
     constructor(props) {
         super(props);
+
         this.setTheme();
         StorageHelpers.initDb();
         StorageHelpers.autoBackup();
+
         setInterval(StorageHelpers.autoBackup, 1000 * 60 * 60 * 6);
+
+        setTimeout(() => {
+            this.setState({
+                isLoading: false
+            });
+        }, 1500);
     }
 
     setTheme = () => {
@@ -28,22 +42,33 @@ class App extends Component {
 
     render() {
         return (
-            <Provider store={store}>
-                <div className="top-menu-container">
-                    <TopMenu/>
-                </div>
-                <div className="content-main-container">
-                    <div className="sidebar-container">
-                        <Sidebar/>
+            <LoadingScreen
+                loading={this.state.isLoading}
+                bgColor='#272727'
+                spinnerColor='#9ee5f8'
+                textColor='#676767'
+                logoSrc='/images/logo/snip_command.png'> 
+                
+                <Provider store={store}>
+                    <div className="top-menu-container">
+                        <TopMenu/>
                     </div>
-                    <div className="content-container">
-                        <CommandArea/>
+
+                    <div className="content-main-container">
+                        <div className="sidebar-container">
+                            <Sidebar/>
+                        </div>
+
+                        <div className="content-container">
+                            <CommandArea/>
+                        </div>
                     </div>
-                </div>
-                <div className="footer-container">
-                    <Footer/>
-                </div>
-            </Provider>
+
+                    <div className="footer-container">
+                        <Footer/>
+                    </div>
+                </Provider>
+            </LoadingScreen>
         );
     }
 }
