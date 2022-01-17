@@ -10,6 +10,9 @@ import Footer from "./components/Footer";
 
 import LoadingScreen from 'react-loading-screen'
 
+import fs from 'fs'
+import path from 'path'
+
 import './components/common.scss';
 
 
@@ -47,7 +50,7 @@ class App extends Component {
                 bgColor='#272727'
                 spinnerColor='#9ee5f8'
                 textColor='#676767'
-                logoSrc='/images/logo/snip_command.png'> 
+                logoSrc='images/logo/snip_command.png'> 
                 
                 <Provider store={store}>
                     <div className="top-menu-container">

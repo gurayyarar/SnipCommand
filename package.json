@@ -1,6 +1,6 @@
 {
   "name": "snipcommand",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "description": "A free and open source command snippets manager for organize and copy fast.",
   "private": true,
   "main": "public/electron.js",
@@ -99,6 +99,16 @@
   "build": {
     "productName": "SnipCommand",
     "appId": "com.snipcommand.app",
+    "extraResources": [
+      {
+          "from": "public/images",
+          "to": "images",
+          "filter": [
+              "**/*"
+          ]
+      }
+    ],
+    "asar": false,
     "directories": {
       "output": "app"
     },
