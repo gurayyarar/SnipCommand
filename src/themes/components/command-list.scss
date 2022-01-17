@@ -1,0 +1,90 @@
+.comp_command-area {
+  .comp_content-header {
+    background: $snippetBgColor;
+    border-bottom: 1px solid $snippetBorderColor;
+
+    .left-side {
+      .title-header {
+
+        svg,
+        path {
+          fill: $primaryGhostTextColor !important;
+        }
+
+        .title {
+          color: $primaryTextColor;
+        }
+      }
+
+      .sub-text {
+        color: $primaryGhostTextColor;
+      }
+    }
+  }
+}
+
+.comp_command-list-item {
+  .sub-container {
+    border-bottom: 1px solid $snippetBorderColor;
+    background: $snippetBgColor;
+    transition: 0.15s all ease-in-out;
+
+    &:hover {
+      background: $snippetBgHoverColor;
+    }
+
+    .right-side {
+
+      svg,
+      path {
+        fill: $activeBackgroundColor !important;
+      }
+    }
+
+    .code {
+      color: $primaryTextColor;
+
+      span {
+        color: #da4453;
+      }
+    }
+
+    .title {
+      color: $primaryTextColor;
+    }
+
+    .tags-list {
+      li {
+        background: $snippetTagBgColor;
+        color: $primaryTextColor;
+        transition: 0.2s all ease-in-out;
+
+        &:hover {
+          background-color: $menuItemHoverBgColor;
+        }
+      }
+    }
+  }
+
+  .command-list-menu {
+    li {
+
+      svg,
+      path {
+        fill: $activeBackgroundColor !important;
+      }
+
+      &.favourite-true {
+        // svg, path {
+        //   fill: $activeBackgroundColor !important;
+        // }
+      }
+
+      &.favourite-false {
+        svg {
+          // stroke: #a0a0a0;
+        }
+      }
+    }
+  }
+}

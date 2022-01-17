@@ -1,7 +1,21 @@
 @import 'variables.scss';
 
+$primaryBackgroundColor: #333842;
+$primaryBorderColor: #5d6064;
+$primaryTextColor: #eeeeee;
+$primaryGhostTextColor: #bbbbbb;
+
+
+$menuItemHoverBgColor: rgba(225, 225, 225, 0.1);
 $activeBackgroundColor: #8a8500;
 $activeBackgroundTextColor: #dddddd;
+
+$snippetBgColor: #282C34;
+$snippetBorderColor: #40444d;
+$snippetBgHoverColor: #333842;
+$snippetTagBgColor: #383c44;
+
+$footerBorderColor: #1b1b1c;
 
 body {
   &.dark-theme {
@@ -17,266 +31,20 @@ body {
       &::-webkit-scrollbar-thumb:hover {
         background: #666666;
       }
+
     }
 
-    .comp_topmenu {
-      background: #21252B;
-      border-bottom: 1px solid #333842;
+    @import './components/top-menu.scss';
 
-      .btn-menubar {
-        &.menu {
-          span {
-            background: #cccccc;
-          }
+    @import './components/main-container.scss';
 
-          &:hover {
-            background: rgba(255, 255, 255, 0.1);
-          }
-        }
-      }
+    @import './components/search-input.scss';
 
-      .right-side {
-        button {
-          color: rgba(255, 255, 255, 0.75);
+    @import './components/sidebar.scss';
 
-          svg {
-            fill: #bbb;
-          }
+    @import './components/command-list.scss';
 
-          &:hover {
-            background: rgba(255, 255, 255, 0.1);
-          }
-        }
-
-        .command-buttons {
-          .btn-menubar {
-            &.minimize,
-            &.maximize {
-              svg {
-                fill: $activeBackgroundColor !important;
-              }
-
-              &:hover {
-                background: rgba(255, 255, 255, 0.1);
-              }
-            }
-
-            &.close {
-              svg {
-                stroke: #cccccc;
-              }
-
-              &:hover {
-                background: #e4142c !important;
-
-                svg {
-                  stroke: #ffffff;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .content-main-container {
-      .content-container {
-        background: #282C34;
-      }
-    }
-
-    .comp_fe_search-field {
-      .search-container {
-        .search-icon-container {
-          svg, path {
-            fill: $activeBackgroundColor !important;
-          }
-        }
-
-        .clear-icon-container {
-          svg, path {
-            fill: $activeBackgroundColor !important;
-          }
-        }
-
-        .form-control {
-          background: transparent;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          color: #eee;
-
-          &::placeholder {
-            color: #aaa;
-          }
-        }
-      }
-    }
-
-    .comp_sidebar {
-      background: #333842;
-      border-right: 1px solid #333842;
-
-      .no-item-text {
-        color: #eeeeee;
-      }
-
-      .header {
-        .sidebar-title {
-          color: #eeeeee;
-        }
-
-        .new-snippet-container {
-          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-
-          &:hover {
-            background: rgba(0, 0, 0, 0.1);
-          }
-
-          .text {
-            color: #eeeeee;
-          }
-
-          .plus {
-            background: #21252B;
-            color: #888888;
-          }
-        }
-
-        .main-menu-container {
-          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .search-result-container {
-          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-      }
-
-      .menu-list {
-        .menu-list-item {
-          .text-container {
-            color: #eeeeee;
-            padding: 5px 0px;
-          }
-
-          &.active {
-            background: $activeBackgroundColor;
-
-            .text-container {
-              color: $activeBackgroundTextColor;
-            }
-
-            svg, path {
-              fill: $activeBackgroundTextColor !important;
-            }
-          }
-
-          &:not(.active) {
-            &:hover {
-              background: rgba(0, 0, 0, 0.1);
-            }
-          }
-
-          .icon-container {
-            svg, path {
-              fill: #cccccc !important;
-            }
-          }
-        }
-      }
-    }
-
-    .comp_command-area {
-      .comp_content-header {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.20);
-        background: #282C34;
-
-        .left-side {
-          .title-header {
-            svg, path {
-              fill: $activeBackgroundColor !important;
-            }
-
-            .title {
-              color: #cccccc;
-            }
-          }
-
-          .sub-text {
-            color: #BBBABB;
-          }
-        }
-      }
-    }
-
-    .comp_command-list-item {
-      .sub-container {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.20);
-        background: #282C34;
-
-        &:hover {
-          background: #333842;
-        }
-
-        .right-side {
-          svg, path {
-            fill: $activeBackgroundColor !important;
-          }
-        }
-
-        .code {
-          color: #dddddd;
-
-          span {
-            color: #da4453;
-          }
-        }
-
-        .title {
-          color: #dddddd;
-        }
-
-        .tags-list {
-          li {
-            background: #333842;
-            color: #cccccc;
-          }
-        }
-      }
-
-      .command-list-menu {
-        li {
-          svg, path {
-            fill: $activeBackgroundColor !important;
-          }
-
-          &.favourite-true {
-            svg {
-              path {
-                fill: #fabe77;
-              }
-            }
-          }
-
-          &.favourite-false {
-            svg {
-              stroke: #a0a0a0;
-            }
-          }
-        }
-      }
-    }
-
-    .comp_footer {
-      background: #21252B;
-      border-top: 1px solid #333842;
-
-      .app-name {
-        color: #aaaaaa;
-
-        small {
-          color: #999999;
-        }
-      }
-    }
+    @import './components/footer.scss';
 
     .comp_confirm-dialog {
       background: rgba(0, 0, 0, 0.5);

@@ -1,5 +1,24 @@
 @import 'variables.scss';
 
+$whiteBgColor: #fff;
+
+$primaryBackgroundColor: #F8F8FA;
+$primaryBorderColor: #e4e4e4;
+$primaryTextColor: #666666;
+$primaryGhostTextColor: #777777;
+
+$menuItemHoverBgColor: rgba(0, 0, 0, 0.1);
+$activeBackgroundColor: #ccc72a;
+$activeBackgroundTextColor: #21252b;
+
+$snippetBgColor: #ffffff;
+$snippetBorderColor: #dfdfdf;
+$snippetBgHoverColor: #F8F8FA;
+$snippetTagBgColor: #f3f3f3;
+$footerBorderColor: #F8F8FA;
+
+$closeWindowBgColor: #d6672b;
+
 body {
   &.light-theme {
     * {
@@ -16,295 +35,17 @@ body {
       }
     }
 
-    .comp_topmenu {
-      background: #F8F8FA;
-      border-bottom: 1px solid #EDEDEE;
+    @import './components/top-menu.scss';
 
-      .btn-menubar {
-        &.menu {
-          span {
-            background: #666666;
-          }
+    @import './components/main-container.scss';
 
-          &:hover {
-            background: rgba(0, 0, 0, 0.1);
-          }
-        }
-      }
+    @import './components/search-input.scss';
 
-      .right-side {
-        button {
-          color: rgba(255, 255, 255, 0.75);
+    @import './components/sidebar.scss';
+    
+    @import './components/command-list.scss';
 
-          svg {
-            fill: #666;
-          }
-
-          &:hover {
-            background: rgba(0, 0, 0, 0.1);
-          }
-        }
-
-        .command-buttons {
-          .btn-menubar {
-            &.minimize,
-            &.maximize {
-              svg, path {
-                fill: $activeBackgroundColor !important;
-              }
-
-              &:hover {
-                background: rgba(0, 0, 0, 0.1);
-              }
-            }
-
-            &.close {
-              svg {
-                stroke: #666;
-              }
-
-              &:hover {
-                background: #e4142c !important;
-
-                svg {
-                  stroke: #ffffff;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .content-main-container {
-      .content-container {
-        background: #ffffff;
-      }
-    }
-
-    .comp_fe_search-field {
-      .search-container {
-        .search-icon-container {
-          svg, path {
-            fill: $activeBackgroundColor !important;
-          }
-        }
-
-        .clear-icon-container {
-          svg, path {
-            fill: $activeBackgroundColor !important;
-          }
-        }
-
-        .form-control {
-          background: transparent;
-          border: 1px solid #ccc;
-          color: #444444;
-
-          &::placeholder {
-            color: #aaa;
-          }
-        }
-      }
-    }
-
-    .comp_sidebar {
-      background: #F8F8FA;
-      border-right: 1px solid #EDEDEE;
-
-      .no-item-text {
-        color: #666666;
-      }
-
-      .header {
-        .sidebar-title {
-          color: #666666;
-        }
-
-        .new-snippet-container {
-          border-bottom: 1px solid #EDEDEE;
-
-          &:hover {
-            background: rgba(0, 0, 0, 0.1);
-          }
-
-          .text {
-            color: #666666;
-          }
-
-          .plus {
-            background: #ccc;
-            color: #ffffff;
-          }
-        }
-
-        .main-menu-container {
-          border-bottom: 1px solid #EDEDEE;
-        }
-
-        .search-result-container {
-          border-bottom: 1px solid #EDEDEE;
-        }
-      }
-
-      .menu-list {
-        .menu-list-item {
-          .text-container {
-            color: #666666;
-          }
-
-          &.active {
-            background: $activeBackgroundColor;
-
-            .text-container {
-              color: $activeBackgroundTextColor;
-            }
-
-            svg {
-              fill: $activeBackgroundTextColor !important;
-            }
-          }
-
-          &:not(.active) {
-            &:hover {
-              background: rgba(0, 0, 0, 0.1);
-            }
-          }
-
-          .icon-container {
-            svg, path {
-              fill: #888;
-            }
-          }
-        }
-      }
-
-
-    }
-
-    .comp_command-area {
-      .comp_content-header {
-        border-bottom: 1px solid #EDEDEE;
-        background: #ffffff;
-
-        .left-side {
-          .title-header {
-            svg {
-              fill: #666666;
-            }
-
-            .title {
-              color: #666666;
-            }
-          }
-
-          .sub-text {
-            color: #777777;
-          }
-        }
-      }
-    }
-
-    .comp_command-list-item {
-      .sub-container {
-        border-bottom: 1px solid #EDEDEE;
-        background: #ffffff;
-
-        &:hover {
-          background: #F8F8FA;
-        }
-
-        .right-side {
-          svg, path {
-            fill: $activeBackgroundTextColor;
-          }
-        }
-
-        .code {
-          color: #666666;
-
-          span {
-            color: #da4453;
-          }
-        }
-
-        .title {
-          color: #666666;
-        }
-
-        .tags-list {
-          li {
-            background: #e5e5e5;
-          }
-        }
-      }
-
-      .command-list-menu {
-        li {
-          svg, path {
-            fill: $activeBackgroundColor !important;
-            stroke: $activeBackgroundColor !important;
-          }
-
-          &.favourite-true {
-            svg, path {
-              fill: $activeBackgroundColor !important;
-              stroke: $activeBackgroundColor !important;
-            }
-          }
-
-          &.favourite-false {
-            svg, path {
-              fill: $activeBackgroundColor !important;
-              stroke: $activeBackgroundColor !important;
-            }
-          }
-
-          &.edit {
-            svg {
-              stroke: #a0a0a0;
-
-              path {
-                &:last-child {
-                  fill: #a0a0a0;
-                }
-              }
-            }
-          }
-
-          &.restore {
-            svg {
-              stroke: #a0a0a0;
-            }
-          }
-
-          &.copy {
-            svg {
-              stroke: #a0a0a0;
-            }
-          }
-
-          &.trash {
-            svg {
-              stroke: #ee1c24;
-            }
-          }
-        }
-      }
-    }
-
-    .comp_footer {
-      background: #F8F8FA;
-      border-top: 1px solid #EDEDEE;
-
-      .app-name {
-        color: #666666;
-
-        small {
-          color: #999999;
-        }
-      }
-    }
+    @import './components/footer.scss';
 
     .comp_confirm-dialog {
       background: rgba(0, 0, 0, 0.5);

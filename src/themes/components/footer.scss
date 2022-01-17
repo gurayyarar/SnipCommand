@@ -1,0 +1,12 @@
+.comp_footer {
+    background: $primaryBackgroundColor;
+    border-top: 1px solid $footerBorderColor;
+
+    .app-name {
+      color: $primaryTextColor;
+
+      small {
+        color: $primaryGhostTextColor;
+      }
+    }
+  }

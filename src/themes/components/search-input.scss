@@ -1,0 +1,32 @@
+.comp_fe_search-field {
+    .search-container {
+        .search-icon-container {
+
+            svg,
+            path {
+                fill: $primaryGhostTextColor !important;
+                margin-top: 2px;
+            }
+        }
+
+        .clear-icon-container {
+
+            svg,
+            path {
+                fill: $closeWindowBgColor !important;
+            }
+        }
+
+        .form-control {
+            background: transparent;
+            border: 1px solid $primaryBorderColor;
+            color: $primaryTextColor;
+            padding-left: 35px;
+            height: 30px;
+
+            &::placeholder {
+                color: $primaryGhostTextColor;
+            }
+        }
+    }
+}

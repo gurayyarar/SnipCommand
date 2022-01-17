@@ -1,0 +1,57 @@
+.comp_topmenu {
+    background: $snippetBgColor;
+    border-bottom: 1px solid $snippetBorderColor;
+
+    .btn-menubar {
+        &.menu {
+            transition: 0.2s all ease-in-out;
+
+            span {
+                background: $activeBackgroundTextColor;
+            }
+
+            &:hover {
+                background: $menuItemHoverBgColor;
+            }
+        }
+    }
+
+    .right-side {
+        button {
+            transition: 0.2s all ease-in-out;
+            margin-top: 2px;
+
+            svg,
+            path {
+                fill: $primaryGhostTextColor !important;
+            }
+
+            &:hover {
+                background: $menuItemHoverBgColor;
+            }
+        }
+
+        .command-buttons {
+            .btn-menubar {
+
+                &.minimize,
+                &.maximize {
+                    &:hover {
+                        background: $menuItemHoverBgColor;
+                    }
+                }
+
+                &.close {
+                    &:hover {
+                        background: $closeWindowBgColor !important;
+
+                        svg,
+                        path {
+                            fill: $whiteBgColor !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

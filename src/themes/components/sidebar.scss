@@ -1,0 +1,77 @@
+.comp_sidebar {
+    background: $primaryBackgroundColor;
+    border-right: 1px solid $primaryBorderColor;
+
+    .no-item-text {
+        color: $primaryTextColor;
+    }
+
+    .header {
+        .sidebar-title {
+            color: $primaryTextColor;
+        }
+
+        .new-snippet-container {
+            border-bottom: 1px solid $primaryBorderColor;
+
+            .text {
+                color: $primaryTextColor;
+            }
+
+            .plus {
+                background: $activeBackgroundColor;
+                color: $activeBackgroundTextColor;
+                transition: 0.2s all ease-in;
+                opacity: 90%;
+
+                &:hover {
+                    opacity: 100%;
+                }
+            }
+        }
+
+        .main-menu-container {
+            border-bottom: 1px solid $primaryBorderColor;
+        }
+
+        .search-result-container {
+            border-bottom: 1px solid $primaryBorderColor;
+        }
+    }
+
+    .menu-list {
+        .menu-list-item {
+            transition: 0.2s all ease-in-out;
+
+            .text-container {
+                color: $primaryTextColor;
+                padding: 5px 0px;
+            }
+
+            &.active {
+                background: $activeBackgroundColor;
+
+                .text-container {
+                    color: $activeBackgroundTextColor;
+                }
+
+                svg {
+                    fill: $activeBackgroundTextColor !important;
+                }
+            }
+
+            &:not(.active) {
+                &:hover {
+                    background: $menuItemHoverBgColor;
+                }
+            }
+
+            .icon-container {
+                svg,
+                path {
+                    fill: $primaryTextColor !important;
+                }
+            }
+        }
+    }
+}
