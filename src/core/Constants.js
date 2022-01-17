@@ -1,4 +1,10 @@
-import { mdiCardsHeartOutline, mdiSelectAll, mdiTagMultipleOutline, mdiDeleteVariant } from './Icons';
+import {
+    mdiCardsHeartOutline,
+    mdiSelectAll,
+    mdiTagMultipleOutline,
+    mdiDeleteVariant,
+    mdiSelectSearch
+} from './Icons';
 
 // Sidebar Menu
 const MainMenus = [{
@@ -29,7 +35,7 @@ const MainMenus = [{
 
 const SearchResult = {
     slug: 'search_result',
-    icon: 'search',
+    icon: mdiSelectSearch,
     name: 'Search Result',
     type: 'search'
 };
