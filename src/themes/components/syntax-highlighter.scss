@@ -4,5 +4,10 @@
     pre {
         background: transparent !important;
         padding: 0px !important;
+
+        code {
+            white-space: break-spaces !important;
+            word-break: break-word !important;
+        }
     }
 }

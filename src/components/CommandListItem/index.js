@@ -155,7 +155,7 @@ class CommandListItem extends Component {
                         {/* Command Block */}
                         <div className='code'>
                             <SyntaxHighlighter language="dsconfig" style={paraisoDark}>
-                                {commandHtml}
+                                {commandHtml && commandHtml.length > 300 ? commandHtml.substring(0, 300) + '...' : commandHtml}
                             </SyntaxHighlighter>
                         </div>
 

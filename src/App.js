@@ -10,9 +10,6 @@ import Footer from "./components/Footer";
 
 import LoadingScreen from 'react-loading-screen'
 
-import fs from 'fs'
-import path from 'path'
-
 import './components/common.scss';
 
 
