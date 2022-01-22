@@ -59,13 +59,16 @@ class SnippetGeneratorModal extends React.Component {
         onClose && onClose();
     }
 
+    /**
+     * Copy command on click
+     */
     copyCommand = () => {
-        const {item} = this.props;
-        const {formValues} = this.state;
-        const willCopyVal = CommandHelpers.replacedCommand(item?.command, formValues);
+        const { formValues } = this.state;
+        const willCopyVal = CommandHelpers.replacedCommand(this.props.item?.command, formValues);
 
         clipboard.writeText(willCopyVal);
         NotyHelpers.open('The command copied your clipboard!', 'info', 3000);
+
         this.onClose();
     }
 

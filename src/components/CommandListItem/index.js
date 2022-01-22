@@ -8,7 +8,7 @@ import SnippetCrudModal from "../SnippetCrudModal";
 import Api from "../../core/Api";
 import {openConfirmDialog} from "../ConfirmDialog";
 import SnippetGeneratorModal from "../SnippetGeneratorModal";
-
+import { clipboard } from 'electron';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { paraisoDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
@@ -25,14 +25,14 @@ import {
 
 import './style.scss';
 
-
 class CommandListItem extends Component {
     state = {
         showCrudModal: false,
         showGeneratorModal: false,
-        confirmDialogTitle: "",
-        confirmDialogText: "",
-        showConfirmDialog: false
+        confirmDialogTitle: '',
+        confirmDialogText: '',
+        showConfirmDialog: false,
+        timer: null
     }
 
     toggleFavourite = () => {
@@ -127,6 +127,34 @@ class CommandListItem extends Component {
         return tags;
     }
 
+    /**
+     * Show item details when double click
+     */
+    showItemDetails = () => {
+        this.setState({
+            timer: clearTimeout(this.state.timer),
+        });
+
+        this.setState({showGeneratorModal: true});
+    }
+
+    /**
+     * Copy command to clipboard single click
+     */
+    copyCommand = (e) => {
+        if (e.detail === 1) {
+            this.setState({
+                timer: setTimeout(() => {
+                    const willCopyVal = CommandHelpers.replacedCommand(this.props.item.command);
+
+                    clipboard.writeText(willCopyVal);
+
+                    NotyHelpers.open('The command copied your clipboard!', 'info', 3000);
+                }, 200)
+            });
+        }
+    }
+
     render() {
         const { item, selectedMenu} = this.props;
         const { showCrudModal, showGeneratorModal } = this.state;
@@ -142,7 +170,9 @@ class CommandListItem extends Component {
                     onClose={() => this.setState({showGeneratorModal: false})}/>
 
                 {/* List Items */}
-                <div onClick={() => this.setState({showGeneratorModal: true})} className="sub-container">
+                <div className="sub-container" 
+                    onClick={this.copyCommand} onDoubleClick={this.showItemDetails}
+                    title='One click: copy, Double click: open details'>
                     <div className="left-side">
                         <div className="title">
                             <Icon path={mdiConsoleLine} size="15px"/>
