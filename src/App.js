@@ -26,12 +26,14 @@ class App extends Component {
         StorageHelpers.autoBackup();
 
         setInterval(StorageHelpers.autoBackup, 1000 * 60 * 60 * 6);
+    }
 
-        setTimeout(() => {
+    componentDidMount() {
+        setTimeout(function () {
             this.setState({
                 isLoading: false
             });
-        }, 1500);
+        }.bind(this), 1500);;;
     }
 
     setTheme = () => {
