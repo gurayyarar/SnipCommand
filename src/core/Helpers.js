@@ -229,18 +229,20 @@ const StorageHelpers = {
             backupDir = storagePrefences.get('backupPath').toString(),
             folders = fs.readdirSync(backupDir);
 
-        folders.forEach((value) => {
-            const momentVal = moment(value, 'YYYY-MM-DD_HH-mm-ss');
-
-            if (momentVal.isValid()){
-                result.push({
-                    name: momentVal.format('DD MMM YYYY, HH:mm:ss'),
-                    timeAgo: momentVal.fromNow(),
-                    filePath: path.join(backupDir, value, App.dbName),
-                    date: momentVal.format('YYYY-MM-DD HH:mm:ss')
-                });
-            } else {
-                console.warn(`Backup file date is invalid: '${value}'`);
+        folders.forEach((folder) => {
+            if (folder !== 'snipcommand.db') {
+                const momentVal = moment(folder, 'YYYY-MM-DD_HH-mm-ss');
+    
+                if (momentVal.isValid()){
+                    result.push({
+                        name: momentVal.format('DD MMM YYYY, HH:mm:ss'),
+                        timeAgo: momentVal.fromNow(),
+                        filePath: path.join(backupDir, folder, App.dbName),
+                        date: momentVal.format('YYYY-MM-DD HH:mm:ss')
+                    });
+                } else {
+                    console.warn(`Backup folder date is invalid: '${folder}'`);
+                }
             }
         });
 
