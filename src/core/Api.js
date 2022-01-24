@@ -5,6 +5,8 @@ import path from 'path';
 import {StorageHelpers} from "./Helpers";
 import {App} from "./Constants";
 
+import MiniSearch from 'minisearch';
+
 let db;
 
 class Api {
@@ -38,7 +40,40 @@ class Api {
 
     getCommandsContainsTag = tag => db.get('commands').filter((t => t.tags.indexOf(tag) > -1 && t.isTrash === false)).value();
 
-    queryCommand = query => db.get('commands').filter((t => (t.title.toLowerCase().indexOf(query) > -1 || t.command.toLowerCase().indexOf(query) > -1) && t.isTrash === false)).value();
+    /**
+     * Search in commands
+     * 
+     * @param string query 
+     * 
+     * @returns array
+     */
+    queryCommand = (query) => {
+        const commands = db.get('commands').value();
+
+        if (commands && commands.length > 0) {
+            query = query ? query : '';
+
+            let miniSearch = new MiniSearch({
+                fields: ['title', 'command', 'tags', 'description'],
+                storeFields: ['title', 'command', 'tags', 'description']
+            });
+
+            miniSearch.addAll(commands);
+
+            const results = miniSearch.search(query, {
+                fuzzy: 0.5,
+                prefix: true,
+                boost: {
+                    title: 2
+                },
+                filter: (item) => !item.isTrash
+            });
+
+            return results;
+        }
+
+        return [];
+    };
 }
 
 export default Api;
