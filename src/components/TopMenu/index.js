@@ -106,7 +106,8 @@ class TopMenu extends Component {
                 <div className="center-side">
                     <SearchField placeholder="Search command" value={query}
                         onChangeText={text => this.onChangeText(text)}
-                        onClearClick={() => this.onChangeText("")}/>
+                        onClearClick={() => this.onChangeText("")}
+                        spellCheck={false}/>
                 </div>
 
                 {/* Top Buttons */}

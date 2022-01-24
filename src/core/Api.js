@@ -61,7 +61,6 @@ class Api {
             miniSearch.addAll(commands);
 
             const results = miniSearch.search(query, {
-                fuzzy: 0.5,
                 prefix: true,
                 boost: {
                     title: 2
