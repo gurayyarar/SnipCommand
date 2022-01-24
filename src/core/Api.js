@@ -25,7 +25,7 @@ class Api {
 
     getCommandById = id => db.get('commands').find({id}).value();
 
-    getAllCommands = () => db.get('commands').filter({isTrash: false}).value();
+    getAllCommands = () => db.get('commands').filter({isTrash: false}).value().reverse();
 
     getAllCommandsInTrash = () => db.get('commands').filter({isTrash: true}).value();
 
@@ -51,6 +51,7 @@ class Api {
         const commands = db.get('commands').value();
 
         if (commands && commands.length > 0) {
+            console.log(commands);
             query = query ? query : '';
 
             let miniSearch = new MiniSearch({
@@ -68,7 +69,7 @@ class Api {
                 filter: (item) => !item.isTrash
             });
 
-            return results;
+            return results.reverse();
         }
 
         return [];
