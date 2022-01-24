@@ -1,5 +1,5 @@
-.comp_command-area {
-  .comp_content-header {
+.content-container {
+  .content-header {
     background: $snippetBgColor;
     border-bottom: 1px solid $snippetBorderColor;
 
@@ -23,7 +23,7 @@
   }
 }
 
-.comp_command-list-item {
+.command-item {
   .sub-container {
     border-bottom: 1px solid $snippetBorderColor;
     background: $snippetBgColor;
@@ -95,7 +95,7 @@
   }
 }
 
-.comp_snippet-generator-modal {
+.command-details-modal {
   .modal-body {
     .title {
       color: $primaryTextColor;

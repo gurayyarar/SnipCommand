@@ -61,7 +61,7 @@ class CommandField extends Component {
         if (fullscreen) formGroupClassName += ' full';
 
         return (
-            <div className="comp_fe_command-field">
+            <div className="fe_command-field">
                 <div className={formGroupClassName}>
                     {label !== "" ? <label className="form-label" htmlFor={name}>{label}</label> : null}
 

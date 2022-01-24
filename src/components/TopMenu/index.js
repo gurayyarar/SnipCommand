@@ -82,7 +82,7 @@ class TopMenu extends Component {
         const { query } = this.props;
 
         return (
-            <div className="comp_topmenu">
+            <div className="topmenu">
                 <SettingsModal show={showSettingsModal} selectedTab={settingsSelectedTab}
                     onClose={() => this.setState({ showSettingsModal: false })}
                     tabChanged={settingsSelectedTab => this.setState({ settingsSelectedTab })}/>

@@ -136,7 +136,7 @@ class TagsField extends Component {
         if (errorText !== "") formGroupClassName += ' has-error';
 
         return (
-            <div className="comp_fe_tags-field">
+            <div className="fe_tags-field">
                 <div className={formGroupClassName}>
                     <div className="title-area">
                         {label !== "" ? <label className="form-label" htmlFor={name}>{label}</label> : null}

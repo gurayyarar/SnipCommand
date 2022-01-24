@@ -22,7 +22,7 @@ class SearchField extends Component {
         document.addEventListener('keyup', (e) => {
             if (!e.repeat){
                 if (e.key === '/'){
-                    const modals = document.querySelectorAll('.comp_modal');
+                    const modals = document.querySelectorAll('.modal');
 
                     let openModals = [];
         
@@ -45,7 +45,7 @@ class SearchField extends Component {
         const {placeholder, value, onChangeText, onClearClick} = this.props;
 
         return (
-            <div className="comp_fe_search-field">
+            <div className="fe_search-field">
                 <div className="search-container">
                     <div className="search-icon-container">
                         <Icon path={mdiMagnify} size="20px"/>

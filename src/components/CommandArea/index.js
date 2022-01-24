@@ -12,15 +12,13 @@ class CommandArea extends React.Component {
         const {selectedMenu, commands} = this.props;
 
         return (
-            <div className="comp_command-area">
-                <div className="header-container">
-                    <ContentHeader title={selectedMenu?.name} itemLength={commands.length} icon={selectedMenu?.icon}/>
-                </div>
+            <>
+                <ContentHeader title={selectedMenu?.name} itemLength={commands.length} icon={selectedMenu?.icon}/>
 
-                <div className="body-container">
+                <div className="command-list">
                     <CommandList items={commands}/>
                 </div>
-            </div>
+            </>
         )
     }
 }

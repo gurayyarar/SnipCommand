@@ -141,7 +141,7 @@ class SnippetGeneratorModal extends React.Component {
         const commandHtml = CommandHelpers.commandAsHtml(item?.command);
 
         return (
-            <div className="comp_snippet-generator-modal">
+            <div className="command-details-modal">
                 <Modal show={show} onClose={this.onClose}
                     title={item?.title} footerTemplate={this._footer}>
 
@@ -161,7 +161,10 @@ class SnippetGeneratorModal extends React.Component {
                         tags.length > 0
                             ? (
                                 <div className="h-separator tags-container">
-                                    <div className="title">Tags</div>
+                                    <div className="title">
+                                        Tags
+                                    </div>
+
                                     <ul>
                                         {
                                             tags.map((value, index) => {

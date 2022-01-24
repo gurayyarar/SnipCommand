@@ -26,7 +26,7 @@ class ContentHeader extends React.Component {
         const itemLengthText = this.getItemLengthText(itemLength);
 
         return (
-            <div className="comp_content-header">
+            <div className="content-header">
                 <div className="left-side">
                     <div className="title-header">
                         <Icon path={icon} size="20px"/>

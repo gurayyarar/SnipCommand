@@ -2,7 +2,7 @@
   margin-bottom: 15px;
 }
 
-.comp_fe_text-field {
+.fe_text-field {
   .form-group {
     label {
       &.form-label {
@@ -31,7 +31,7 @@
   }
 }
 
-.comp_fe_password-field {
+.fe_password-field {
   .form-group {
     position: relative;
 
@@ -83,7 +83,7 @@
   }
 }
 
-.comp_fe_choice-field {
+.fe_choice-field {
   .form-group {
     label {
       &.form-label {
@@ -112,7 +112,7 @@
   }
 }
 
-.comp_fe_markdown-field {
+.fe_markdown-field {
   .rc-md-editor {
     border-radius: 3px;
     overflow: hidden;
@@ -186,7 +186,7 @@
   }
 }
 
-.comp_fe_tags-field {
+.fe_tags-field {
   .form-group {
     .title-area {
       display: flex;
@@ -294,7 +294,7 @@
   }
 }
 
-.comp_fe_command-field {
+.fe_command-field {
   .full {
     .command-container {
       width: 100%;
@@ -397,7 +397,7 @@
   font-size: 13px;
 }
 
-.comp_fe_search-field {
+.fe_search-field {
   .search-container {
     position: relative;
 

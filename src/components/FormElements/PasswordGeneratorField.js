@@ -16,7 +16,7 @@ class PasswordGeneratorField extends Component {
         if (errorText !== "") formGroupClassName += ' has-error';
 
         return (
-            <div className="comp_fe_password-field">
+            <div className="fe_password-field">
                 <div className={formGroupClassName}>
                     { label !== "" ? <label className="form-label" htmlFor={name}>{label}</label> : null }
 

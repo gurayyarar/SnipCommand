@@ -162,7 +162,7 @@ class CommandListItem extends Component {
         const tags = this.getTags();
 
         return (
-            <div className="comp_command-list-item">
+            <div className="command-item">
                 <SnippetCrudModal id={item?.id} show={showCrudModal}
                     onClose={() => this.setState({showCrudModal: false})}/>
 

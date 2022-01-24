@@ -24,7 +24,7 @@
     }
 }
 
-.comp_fe_text-field {
+.fe_text-field {
     .form-group {
         label {
             &.error-label {
@@ -40,7 +40,7 @@
     }
 }
 
-.comp_fe_password-field {
+.fe_password-field {
     .form-group {
         label {
             &.error-label {
@@ -70,7 +70,7 @@
     }
 }
 
-.comp_fe_choice-field {
+.fe_choice-field {
     .form-group {
         label {
             &.error-label {
@@ -91,7 +91,7 @@
     }
 }
 
-.comp_fe_markdown-field {
+.fe_markdown-field {
     .rc-md-editor {
         border: 1px solid $primaryBorderColor;
         background-color: $primaryBackgroundColor;
@@ -140,7 +140,7 @@
     }
 }
 
-.comp_fe_tags-field {
+.fe_tags-field {
     .form-group {
 
         label {
@@ -226,7 +226,7 @@
     }
 }
 
-.comp_fe_command-field {
+.fe_command-field {
     .form-group {
         label {
             &.error-label {

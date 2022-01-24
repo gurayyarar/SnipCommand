@@ -171,7 +171,7 @@ class SettingsModal extends React.Component {
         const {show, onClose, selectedTab} = this.props;
 
         return (
-            <div className="comp_settings-modal">
+            <div className="settings-modal">
                 <Modal
                     show={show}
                     onClose={onClose}

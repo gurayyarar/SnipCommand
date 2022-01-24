@@ -6,7 +6,7 @@ import './style.scss';
 class Modal extends Component {
     render() {
         const {show, title, onClose, children, footerTemplate} = this.props;
-        let modalClassName = 'comp_modal';
+        let modalClassName = 'modal';
         
         if (show) modalClassName += ' visible';
 

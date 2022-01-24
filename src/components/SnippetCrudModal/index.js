@@ -101,7 +101,7 @@ class SnippetCrudModal extends React.Component {
         const modalTitle = `${id !== undefined ? 'Edit' : 'New'} - Command Snippet`;
 
         return (
-            <div className="comp_snippet-crud-modal">
+            <div className="snippet-crud-modal">
                 <Modal
                     show={show}
                     onClose={this.onClose}

@@ -9,13 +9,13 @@ class CommandList extends React.Component {
         const {items} = this.props;
 
         return (
-            <div className="comp_command-list">
+            <>
                 {
                     items.map((value, index) => {
                         return <CommandListItem key={index} item={value}/>
                     })
                 }
-            </div>
+            </>
         )
     }
 }

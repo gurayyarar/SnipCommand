@@ -15,14 +15,16 @@ class ConfirmDialog extends Component {
         const {title, text, buttons} = this.props;
 
         return (
-            <div className="comp_confirm-dialog">
+            <div className="confirm-modal">
                 <div className="confirm-dialog-content">
                     <div className="confirm-dialog-header">
                         <div className="title">{title}</div>
                     </div>
+
                     <div className="confirm-dialog-body">
                         <div className="text" dangerouslySetInnerHTML={{__html: text}} />
                     </div>
+                    
                     <div className="confirm-dialog-footer">
                         {
                             buttons.map((button, index) => {

@@ -11,7 +11,7 @@ class TextField extends Component {
         if (errorText !== "") formGroupClassName += ' has-error';
 
         return (
-            <div className="comp_fe_text-field">
+            <div className="fe_text-field">
                 <div className={formGroupClassName}>
                     {label !== "" ? <label className="form-label" htmlFor={name}>{label}</label> : null}
                     <input

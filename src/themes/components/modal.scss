@@ -1,4 +1,4 @@
-.comp_modal {
+.modal {
     &.visible {
         .modal-overlay {
             background: $modalOverlayBackground;
@@ -37,7 +37,7 @@
     }
 }
 
-.comp_settings-modal {
+.settings-modal {
     .tabs-header-container {
         border-bottom: 1px solid $primaryBorderColor;
 
@@ -156,7 +156,7 @@
     }
 }
 
-.comp_snippet-crud-modal {
+.snippet-crud-modal {
     .modal-body {
         .form-label {
             color: $primaryTextColor;

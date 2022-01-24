@@ -37,7 +37,7 @@ class Sidebar extends React.Component {
         const {snippetModalVisible} = this.state;
 
         return (
-            <nav className="comp_sidebar">
+            <nav className="sidebar">
                 <SnippetCrudModal show={snippetModalVisible}
                     onClose={() => this.setState({snippetModalVisible: false})}/>
 
