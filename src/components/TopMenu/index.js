@@ -112,7 +112,7 @@ class TopMenu extends Component {
 
                 {/* Top Buttons */}
                 <div className="right-side">
-                    {/* Settings Button */}
+                    {/* Preferences Button */}
                     <button className="btn-preferences" title="Preferences"
                         onClick={() => this.setState({ showSettingsModal: true, settingsSelectedTab: 'storage' })}>
                         <Icon path={mdiCogOutline} size="22px"/>
