@@ -8,7 +8,7 @@ import CommandArea from "./components/CommandArea";
 import { StorageHelpers, ThemeHelpers } from "./core/Helpers";
 import Footer from "./components/Footer";
 
-import LoadingScreen from 'react-loading-screen'
+import LoadingScreen from './components/LoadingScreen';
 
 import './components/common.scss';
 
@@ -33,7 +33,7 @@ class App extends Component {
             this.setState({
                 isLoading: false
             });
-        }.bind(this), 1500);;;
+        }.bind(this), 1500);
     }
 
     setTheme = () => {
@@ -45,10 +45,7 @@ class App extends Component {
     render() {
         return (
             <LoadingScreen
-                loading={this.state.isLoading}
-                bgColor='#272727'
-                spinnerColor='#9ee5f8'
-                textColor='#676767'
+                isLoading={this.state.isLoading}
                 logoSrc='images/logo/snip_command.png'> 
                 
                 <Provider store={store}>

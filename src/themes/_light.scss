@@ -32,8 +32,12 @@ $scrollbarTrackBgColor: #f1f1f1;
 $scrollbarThumbColor: rgba(0, 0, 0, 0.25);
 $scrollbarThumbHoverColor: #666666;
 
+$loadingScreenBgColor: $primaryBackgroundColor;
+
 body {
   &.light-theme {
+    @import './components/loading-screen.scss';
+
     @import './components/scrollbar.scss';
 
     @import './components/top-menu.scss';
